@@ -1,13 +1,14 @@
-//var webpack = require('webpack');
+var webpack = require('webpack');
 var path = require("path"),
     HtmlWebpackPlugin = require('html-webpack-plugin');
+  //  CommonsChunkPlugin = webpack.optimize.CommonsChunkPlugin;
 
 
 module.exports = {
     entry: {
         bundle: "./src/index.js",
-        // react:"./src/react.js",
-        // index:"./module_demo/index.js"
+        //a:"./src/a.js",
+        vendor: ["react", "react-dom"]
     },
     output: {
         path: path.resolve(__dirname, 'dist'),
@@ -59,12 +60,25 @@ module.exports = {
         new HtmlWebpackPlugin({
             filename: 'index.html',
             template: 'template/_layout.html'
+        }),
+        /**
+         *引入vendor 引入第三方库（node_modules)的时候，不依赖 CommonsChunkPlugin插件也有效自己定义的文件入口不行
+         */
+        new webpack.optimize.CommonsChunkPlugin({
+            name: "vendor",
+
+            // filename: "vendor.js"
+            // (Give the chunk a different name)
+
+            minChunks: Infinity,
+            // (with more entries, this ensures that no other module
+            //  goes into the vendor chunk)
         })
     ],
-    externals: [
-        'react',
-        'react-dom'
-    ],
+    // externals: [
+    //     'react',
+    //     'react-dom'
+    // ],
     devServer: {
         contentBase: path.join(__dirname, "dist"),
         compress: true,
