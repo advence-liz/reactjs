@@ -4,7 +4,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width">
-	<title>DocStrap Index</title>
+	<title>DocStrap Source: nav.jsx</title>
 
 	<!--[if lt IE 9]>
 	<script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
@@ -81,53 +81,165 @@
 <div class="row">
 
 	
-	<div class="col-md-8">
+	<div class="col-md-12">
 	
 		<div id="main">
 			
 
-	
-	
+		<h1 class="page-title">Source: nav.jsx</h1>
+    
+<section>
+    <article>
+        <pre
+            class="sunlight-highlight-javascript linenums">&lt;Fun> &lt;/Fun>
+
+const Listing = React.createClass({
+  // ...
+  render() {
+    return &lt;div>{this.state.hello}&lt;/div>;
+  }
+});
+/**
+ * Creates a new Person.
+ * @class
+ */
+function Person() {
+}
+
+var p = new Person();
+
+
+/** Class representing a point. 
+ * @class
+ * @memberof  es6
+ * 
+*/
+class Point {
+  /**
+   * Create a point.
+   * @param {number} x - The x value.
+   * @param {number} y - The y value.
+   */
+  constructor(x, y) {
+    // ...
+  }
+
+  /**
+   * Get the x value.
+   * @return {number} The x value.
+   */
+  getX() {
+    // ...
+  }
+
+  /**
+   * Get the y value.
+   * @return {number} The y value.
+   */
+  getY() {
+    // ...
+  }
+
+  /**
+   * Convert a string containing two comma-separated numbers into a point.
+   * @param {string} str - The string containing two comma-separated numbers.
+   * @return {Point} A Point object.
+   */
+  static fromString(str) {
+    // ...
+  }
+}
 
 
 
+/** Class representing a point. 
+ * @class
+ * @param {number} x - The x value.
+ * @param {number} y - The y value.
+ * @memberof  es5
+ * 
+*/
+function PointES5() {
+  /**
+   * Create a point.
+   * @param {number} x - The x value.
+   * @param {number} y - The y value.
+   */
+  this.constructor = function (x, y) {
+    // ...
+  }
 
+  /**
+   * Get the x value.
+   * @return {number} The x value.
+   */
+  this.getX = function () {
+    // ...
+  }
 
+  /**
+   * Get the y value.
+   * @return {number} The y value.
+   */
+  this.getY = function () {
+    // ...
+  }
 
+}
 
+/**
+ * Convert a string containing two comma-separated numbers into a point.
+ * @param {string} str - The string containing two comma-separated numbers.
+ * @return {Point} A Point object.
+ */
 
+PointES5.fromString = function (str) {
 
+}
 
+/** Class representing a point. 
+ * @class
+ * @memberof  es5
+ * 
+*/
 
-	
-	
+ var PointOBJ= {
+  /**
+   * Create a point.
+   * @param {number} x - The x value.
+   * @param {number} y - The y value.
+   * @memberof es6#
+   */
+  constructor : function (x, y) {
+    // ...
+  },
+  /**
+   * name
+   * @prop
+   * @memberof es6#
+   */
+ name:"liz",
+  /**
+   * Get the x value.
+   * @public
+   * @return {number} The x value.
+   */
+  getX :function () {
+    // ...
+  },
 
+  /**
+   * Get the y value.
+   * @return {number} The y value.
+   */
+  getY : function () {
+    // ...
+  }
 
-
-
-
-    <section class="readme-section">
-        <article><h1>reactjs</h1><p>for react <a href="https://advence-liz.github.io/reactjs/out/index.html">教程</a></p>
-<h2>REF</h2><ul>
-<li><p><a href="https://reacttraining.com/react-router/web/example/basic">react-router</a></p>
-<h2>AMD</h2><p>创建一个branch 存储之前的AMD 打包方案
--</p>
-<pre class="prettyprint source lang-bash"><code>$ npm install reactjs_study</code></pre></li>
-<li><p><a href="https://github.com/advence-liz/reactjs/tree/AMD%26require">AMD with require 方案</a></p>
-</li>
-</ul>
-<h2>tip</h2><ul>
-<li>我发现 npm publish 会自动将项目中的 .gitignore 转为 .npmignore</li>
-<li>page.json 中的 dependencs 会被自动下载到 node_modules,而 devDependences不会下载</li>
-<li>page.json 配置bin 字段然后全局安装就是开发命令行工具了</li>
-</ul>
-<h2>thinking about jsdoc</h2><ul>
-<li>一个控件一个 namespace ，暴露的接口加上 memberof namespace</li>
-</ul>
-<h2>TODO</h2><p>-[ ] 做一个命令行工具可以可以自动编译less 压缩 css 压缩 js 运行 webpack </p></article>
-    </section>
-
-
+}
+</pre>
+    </article>
+</section>
 
 
 
@@ -138,10 +250,6 @@
 
 	<div class="clearfix"></div>
 
-	
-		<div class="col-md-3">
-			<div id="toc" class="col-md-3 hidden-xs hidden-sm hidden-md"></div>
-		</div>
 	
 
 </div>

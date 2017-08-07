@@ -4,7 +4,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width">
-	<title>DocStrap Index</title>
+	<title>DocStrap Tutorial: Child B</title>
 
 	<!--[if lt IE 9]>
 	<script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
@@ -81,67 +81,179 @@
 <div class="row">
 
 	
-	<div class="col-md-8">
+	<div class="col-md-12">
 	
 		<div id="main">
-			
+			<section class="tutorial-section">
 
-	
-	
+<header>
+    
 
+    <h2>Child B</h2>
+</header>
 
-
-
-
-
-
-
-
-
-
-	
-	
-
-
-
-
-
-    <section class="readme-section">
-        <article><h1>reactjs</h1><p>for react <a href="https://advence-liz.github.io/reactjs/out/index.html">教程</a></p>
-<h2>REF</h2><ul>
-<li><p><a href="https://reacttraining.com/react-router/web/example/basic">react-router</a></p>
-<h2>AMD</h2><p>创建一个branch 存储之前的AMD 打包方案
--</p>
-<pre class="prettyprint source lang-bash"><code>$ npm install reactjs_study</code></pre></li>
-<li><p><a href="https://github.com/advence-liz/reactjs/tree/AMD%26require">AMD with require 方案</a></p>
-</li>
+<article>
+    <h1>Popup</h1><ul>
+<li>based on <a href="http://jquery.com/">jquery</a>, <a href="http://jqueryui.com/">jQuery-ui(widget)</a>.</li>
+<li>Author:李雪峰</li>
 </ul>
-<h2>tip</h2><ul>
-<li>我发现 npm publish 会自动将项目中的 .gitignore 转为 .npmignore</li>
-<li>page.json 中的 dependencs 会被自动下载到 node_modules,而 devDependences不会下载</li>
-<li>page.json 配置bin 字段然后全局安装就是开发命令行工具了</li>
-</ul>
-<h2>thinking about jsdoc</h2><ul>
-<li>一个控件一个 namespace ，暴露的接口加上 memberof namespace</li>
-</ul>
-<h2>TODO</h2><p>-[ ] 做一个命令行工具可以可以自动编译less 压缩 css 压缩 js 运行 webpack </p></article>
-    </section>
+<h2>创建控件</h2><h3>JSX代码(非state控制模式)</h3><pre class="prettyprint source lang-javascript"><code>//右键显示示例
+showPopup(e){
+    if(e.which===3){
+        e.stopPropagation();
+        e.preventDefault();
+        return true;
+    }
+}</code></pre><pre class="prettyprint source lang-html"><code>&lt;a href=&quot;#&quot; id=&quot;popup0&quot;>show popup&lt;/a>
+&lt;R.Popup
+    of=&quot;#popup0&quot;
+    triggerEvents=&quot;click&quot;
+    customTrigger={{contextmenu:this.showPopup.bind(this)}}
+>
+{任意元素结构}
+&lt;/R.Popup></code></pre><h3>JSX代码(state控制模式)</h3><pre class="prettyprint source lang-javascript"><code>this.state={
+    showPopup:{show:false}
+}
+togglePopup(){
+    this.setState({showPopup:{show:!this.state.showPopup.show}});
+}</code></pre><pre class="prettyprint source lang-html"><code>//本示例已省略部分参数，适用于在控件外部，额外有控制popup显隐，或必须通过state来控制的情况。
+//一般情况不建议使用此方案，需要更新state的，可以按上面的示例，添加shown/hidden回调来控制state。
+&lt;button data-close=&quot;prevent&quot; onClick={this.togglePopup}>&lt;/button>
+&lt;a href=&quot;#&quot; id=&quot;popup0&quot;>show popup&lt;/a>
+&lt;R.Popup
+    ofElement=&quot;#popup0&quot;
+    status={this.state.showPopup.bind(this)}
+>
+{任意元素结构}
+&lt;/R.Popup></code></pre><h2>控件参数</h2><table>
+<thead>
+<tr>
+<th>参数名</th>
+<th>类型</th>
+<th>默认值</th>
+<th>描述 </th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>width</td>
+<td>Number/String</td>
+<td>null</td>
+<td>设置popup的宽度。</td>
+</tr>
+<tr>
+<td>height</td>
+<td>Number/String</td>
+<td>null</td>
+<td>设置popup的高度。</td>
+</tr>
+<tr>
+<td>my</td>
+<td>String</td>
+<td>&quot;left top&quot;</td>
+<td>popup定位参数，参考<a href="http://www.runoob.com/jqueryui/api-position.html">jQuery-UI文档</a>。</td>
+</tr>
+<tr>
+<td>at</td>
+<td>String</td>
+<td>&quot;left bottom&quot;</td>
+<td>popup定位参数，参考<a href="http://www.runoob.com/jqueryui/api-position.html">jQuery-UI文档</a>。</td>
+</tr>
+<tr>
+<td>within</td>
+<td>jQuery Element</td>
+<td>window</td>
+<td>popup定位参数，参考<a href="http://www.runoob.com/jqueryui/api-position.html">jQuery-UI文档</a>。</td>
+</tr>
+<tr>
+<td>of</td>
+<td>jQuery sizzle String</td>
+<td>&quot;&quot;</td>
+<td>jQuery sizzle选择器字符串，对应的元素会被设置为popup的toggle触发元素，且默认定位时以此元素为基准，参考<a href="http://www.runoob.com/jqueryui/api-position.html">jQuery-UI文档</a>。</td>
+</tr>
+<tr>
+<td>ofElement</td>
+<td>jQuery sizzle String</td>
+<td>null</td>
+<td>特殊情况下，当设置此参数后，popup定位的基准元素改为为此元素。</td>
+</tr>
+<tr>
+<td>status</td>
+<td>Object</td>
+<td>{show:false}</td>
+<td>用于设置/获取popup控件状态(show/hide)。</td>
+</tr>
+<tr>
+<td>triggerEvents</td>
+<td>String</td>
+<td>&quot;&quot;</td>
+<td>of元素触发popup的toggle事件方式，例如&quot;click&quot;等。</td>
+</tr>
+<tr>
+<td>customTrigger</td>
+<td>Object{Function}</td>
+<td>{}</td>
+<td>自定义popup的出发方式，参考示例中的右键触发，对象属性名为触发的事件名称，属性值为function，当此function内return true时，才会触发popup的toggle。</td>
+</tr>
+<tr>
+<td>zIndex</td>
+<td>Number</td>
+<td>null</td>
+<td>设置popup的z-index, 除特殊情况外, 不建议设置。</td>
+</tr>
+<tr>
+<td>shown/hidden</td>
+<td>Function</td>
+<td>null</td>
+<td>当popup显示/隐藏后的回调。</td>
+</tr>
+</tbody>
+</table>
+<h2>控件公共方法</h2><table>
+<thead>
+<tr>
+<th>方法名</th>
+<th>参数</th>
+<th>参数可选值</th>
+<th>描述 </th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>setPosition</td>
+<td>ofElement</td>
+<td>jQuery Element/Event</td>
+<td>重新定位Popup。</td>
+</tr>
+<tr>
+<td>show</td>
+<td>ofElement</td>
+<td>同上</td>
+<td>显示Popup</td>
+</tr>
+<tr>
+<td>hide</td>
+<td>无</td>
+<td></td>
+<td>隐藏Popup</td>
+</tr>
+<tr>
+<td>toggle</td>
+<td>无</td>
+<td></td>
+<td>切换Popup的显示/隐藏</td>
+</tr>
+</tbody>
+</table>
+</article>
 
-
-
-
-
-
+</section>
 
 		</div>
 	</div>
 
 	<div class="clearfix"></div>
 
-	
-		<div class="col-md-3">
-			<div id="toc" class="col-md-3 hidden-xs hidden-sm hidden-md"></div>
-		</div>
 	
 
 </div>

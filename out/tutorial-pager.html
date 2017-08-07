@@ -4,7 +4,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width">
-	<title>DocStrap Index</title>
+	<title>DocStrap Tutorial: Child A</title>
 
 	<!--[if lt IE 9]>
 	<script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
@@ -81,67 +81,72 @@
 <div class="row">
 
 	
-	<div class="col-md-8">
+	<div class="col-md-12">
 	
 		<div id="main">
-			
+			<section class="tutorial-section">
 
-	
-	
+<header>
+    
 
+    <h2>Child A</h2>
+</header>
 
-
-
-
-
-
-
-
-
-
-	
-	
-
-
-
-
-
-    <section class="readme-section">
-        <article><h1>reactjs</h1><p>for react <a href="https://advence-liz.github.io/reactjs/out/index.html">教程</a></p>
-<h2>REF</h2><ul>
-<li><p><a href="https://reacttraining.com/react-router/web/example/basic">react-router</a></p>
-<h2>AMD</h2><p>创建一个branch 存储之前的AMD 打包方案
--</p>
-<pre class="prettyprint source lang-bash"><code>$ npm install reactjs_study</code></pre></li>
-<li><p><a href="https://github.com/advence-liz/reactjs/tree/AMD%26require">AMD with require 方案</a></p>
-</li>
+<article>
+    <p>﻿# R.Pager React</p>
+<ul>
+<li>Author:陈天慧</li>
 </ul>
-<h2>tip</h2><ul>
-<li>我发现 npm publish 会自动将项目中的 .gitignore 转为 .npmignore</li>
-<li>page.json 中的 dependencs 会被自动下载到 node_modules,而 devDependences不会下载</li>
-<li>page.json 配置bin 字段然后全局安装就是开发命令行工具了</li>
-</ul>
-<h2>thinking about jsdoc</h2><ul>
-<li>一个控件一个 namespace ，暴露的接口加上 memberof namespace</li>
-</ul>
-<h2>TODO</h2><p>-[ ] 做一个命令行工具可以可以自动编译less 压缩 css 压缩 js 运行 webpack </p></article>
-    </section>
+<h2>React JSX 用法</h2><pre class="prettyprint source lang-html"><code> &lt;R.Pager 
+    pageSize={15}
+    pageCount={1}
+    pageIndex={1}
+    onClick={this.onPageClick}>
+ &lt;/R.Pager></code></pre><h2>控件参数</h2><table>
+<thead>
+<tr>
+<th>参数名</th>
+<th>类型</th>
+<th>默认值</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>pageSize</td>
+<td>Number</td>
+<td>15</td>
+<td>获取或设置每页显示的记录数。</td>
+</tr>
+<tr>
+<td>pageCount</td>
+<td>Number</td>
+<td>1</td>
+<td>获取或设置Pager控件的总页数。</td>
+</tr>
+<tr>
+<td>pageIndex</td>
+<td>Number</td>
+<td>1</td>
+<td>获取或设置Pager 控件的当前页数。</td>
+</tr>
+<tr>
+<td>onClick</td>
+<td>Function</td>
+<td>$.noop</td>
+<td>pager 发生变化后的回调函数。</td>
+</tr>
+</tbody>
+</table>
+</article>
 
-
-
-
-
-
+</section>
 
 		</div>
 	</div>
 
 	<div class="clearfix"></div>
 
-	
-		<div class="col-md-3">
-			<div id="toc" class="col-md-3 hidden-xs hidden-sm hidden-md"></div>
-		</div>
 	
 
 </div>

@@ -56,6 +56,7 @@ const Topic = ({ match }) => (
  * @constructor
  * @prop {String} title link title
  * @prop {String} path  link path
+ * @see {Person}
  */
 class IndexItem {
   constructor(title, path) {

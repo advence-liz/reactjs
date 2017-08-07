@@ -4,7 +4,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width">
-	<title>DocStrap Classes</title>
+	<title>DocStrap Class: Point</title>
 
 	<!--[if lt IE 9]>
 	<script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
@@ -33,7 +33,7 @@
 			<li class="dropdown">
 				<a href="namespaces.list.html" class="dropdown-toggle" data-toggle="dropdown">Namespaces<b class="caret"></b></a>
 				<ul class="dropdown-menu ">
-					<li><a href="es5.html">es5</a></li><li><a href="es6.html">es6</a></li><li><a href="MyNamespace.html">MyNamespace</a></li>
+					<li><a href="es5.html">es5</a></li><li><a href="MyNamespace.html">MyNamespace</a></li>
 				</ul>
 			</li>
 			
@@ -47,7 +47,7 @@
 			<li class="dropdown">
 				<a href="classes.list.html" class="dropdown-toggle" data-toggle="dropdown">Classes<b class="caret"></b></a>
 				<ul class="dropdown-menu ">
-					<li><a href="base.html">base</a></li><li><a href="es5.PointES5.html">es5.PointES5</a></li><li><a href="es5.PointOBJ.html">es5.PointOBJ</a></li><li><a href="es6.Point.html">es6.Point</a></li><li><a href="IndexItem.html">IndexItem</a></li><li><a href="Person.html">Person</a></li>
+					<li><a href="base.html">base</a></li><li><a href="es5.PointES5.html">es5.PointES5</a></li><li><a href="es5.PointOBJ.html">es5.PointOBJ</a></li><li><a href="IndexItem.html">IndexItem</a></li><li><a href="MyNamespace.Point.html">MyNamespace.Point</a></li><li><a href="Person.html">Person</a></li>
 				</ul>
 			</li>
 			
@@ -86,14 +86,18 @@
 		<div id="main">
 			
 
-	<h1 class="page-title">Classes</h1>
+	<h1 class="page-title">Class: Point</h1>
 <section>
 
 <header>
     
         <h2>
+            <span class="ancestors"><a href="MyNamespace.html">MyNamespace</a>.</span>
         
+        Point
         </h2>
+        
+            <div class="class-description"><p>Class representing a point.</p></div>
         
     
 </header>
@@ -103,8 +107,102 @@
     <div class="container-overview">
     
         
+<hr>
+<dt>
+    <h4 class="name" id="Point"><span class="type-signature"></span>new Point(x, y)</h4>
+    
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        <p>Create a point.</p>
+    </div>
+    
+
+    
+
+    
+
+    
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params table table-striped">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
 
         
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>x</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The x value.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>y</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The y value.</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+    
+
+    
 <dl class="details">
     
 
@@ -135,6 +233,16 @@
 
 
 	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		<ul class="dummy">
+			<li>
+				<a href="nav.jsx.html">nav.jsx</a>,
+				 <a href="nav.jsx.html#sunlight-1-line-24">line 24</a>
+			</li>
+		</ul>
+	</dd>
+	
 
 	
 
@@ -144,7 +252,21 @@
 </dl>
 
 
-        
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dd>
+
     
     </div>
 
@@ -153,48 +275,409 @@
     
 
     
-        <h3 class="subsection-title">Classes</h3>
+
+    
+
+    
+
+    
+
+    
+        <h3 class="subsection-title">Methods</h3>
 
         <dl>
-            <dt><a href="base.html">base</a></dt>
-            <dd></dd>
+            
+<hr>
+<dt>
+    <h4 class="name" id=".fromString"><span class="type-signature">&lt;static> </span>fromString(str)</h4>
+    
+    
+    <p class="summary">Convert a string containing two comma-separated numbers into a point.</p>
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        <p>Convert a string containing two comma-separated numbers into a point.</p>
+    </div>
+    
+
+    
+
+    
+
+    
+    
+        <h5>Parameters:</h5>
         
-            <dt><a href="es5.PointES5.html">PointES5</a></dt>
-            <dd>Class representing a point.</dd>
+
+<table class="params table table-striped">
+    <thead>
+    <tr>
         
-            <dt><a href="es5.PointOBJ.html">PointOBJ</a></dt>
-            <dd>Class representing a point.</dd>
+        <th>Name</th>
         
-            <dt><a href="es6.Point.html">Point</a></dt>
-            <dd></dd>
+
+        <th>Type</th>
+
         
-            <dt><a href="IndexItem.html">IndexItem</a></dt>
-            <dd></dd>
+
         
-            <dt><a href="Person.html">Person</a></dt>
-            <dd>Creates a new Person.</dd>
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>str</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The string containing two comma-separated numbers.</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		<ul class="dummy">
+			<li>
+				<a href="nav.jsx.html">nav.jsx</a>,
+				 <a href="nav.jsx.html#sunlight-1-line-55">line 55</a>
+			</li>
+		</ul>
+	</dd>
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <h5>Returns:</h5>
+    
+            
+<div class="param-desc">
+    <p>A Point object.</p>
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Point</span>
+
+
+
+    </dd>
+</dl>
+
+
+        
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt>
+    <h4 class="name" id="getX"><span class="type-signature"></span>getX()</h4>
+    
+    
+    <p class="summary">Get the x value.</p>
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        <p>Get the x value.</p>
+    </div>
+    
+
+    
+
+    
+
+    
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		<ul class="dummy">
+			<li>
+				<a href="nav.jsx.html">nav.jsx</a>,
+				 <a href="nav.jsx.html#sunlight-1-line-38">line 38</a>
+			</li>
+		</ul>
+	</dd>
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <h5>Returns:</h5>
+    
+            
+<div class="param-desc">
+    <p>The x value.</p>
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">number</span>
+
+
+
+    </dd>
+</dl>
+
+
+        
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt>
+    <h4 class="name" id="getY"><span class="type-signature"></span>getY()</h4>
+    
+    
+    <p class="summary">Get the y value.</p>
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        <p>Get the y value.</p>
+    </div>
+    
+
+    
+
+    
+
+    
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		<ul class="dummy">
+			<li>
+				<a href="nav.jsx.html">nav.jsx</a>,
+				 <a href="nav.jsx.html#sunlight-1-line-46">line 46</a>
+			</li>
+		</ul>
+	</dd>
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <h5>Returns:</h5>
+    
+            
+<div class="param-desc">
+    <p>The y value.</p>
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">number</span>
+
+
+
+    </dd>
+</dl>
+
+
+        
+
+    
+</dd>
+
         </dl>
-    
-
-    
-
-    
-        <h3 class="subsection-title">Namespaces</h3>
-
-        <dl>
-            <dt><a href="namespaces.html#es5"><a href="es5.html">es5</a></a></dt>
-            <dd>A namespace.</dd>
-        
-            <dt><a href="namespaces.html#es6"><a href="es6.html">es6</a></a></dt>
-            <dd>A namespace.</dd>
-        
-            <dt><a href="namespaces.html#MyNamespace"><a href="MyNamespace.html">MyNamespace</a></a></dt>
-            <dd>My namespace.</dd>
-        </dl>
-    
-
-    
-
     
 
     
@@ -248,7 +731,7 @@
 <span class="jsdoc-message">
 	Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.4</a>
 	
-		on 2017-08-07T17:21:06+08:00
+		on 2017-08-07T16:27:04+08:00
 	
 	using the <a href="https://github.com/docstrap/docstrap">DocStrap template</a>.
 </span>

@@ -1,0 +1,16 @@
+ {
+     "nav": {
+         "title": "Tutorial One",
+         "children": {
+             "pager": {
+                 "title": "Child A"
+             },
+             "popup": {
+                 "title": "Child B"
+             }
+         }
+     },
+     "webpack&require": {
+         "title": "Tutorial Two"
+     }
+ }
