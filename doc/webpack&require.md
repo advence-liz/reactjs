@@ -23,7 +23,7 @@
   + a.js
 
 
-```html
+```xml
 <!doctype html>
 <html lang="en">
   <head>
@@ -47,7 +47,7 @@
  
 </html>
 ```    
-```js
+```javascript
 //hello.js 依赖 React ReactDom a
 import React from 'react';
 import ReactDOM from 'react-dom';
@@ -92,7 +92,7 @@ export { liz as fun };
   
 
 
-```html
+```xml
 <!doctype html>
 <html lang="en">
   <head>
@@ -110,7 +110,7 @@ export { liz as fun };
 </html>
 
 ```    
-```js
+```javascript
 //hello.js 依赖 React ReactDom a 当使用webpack 的时候我react 和react-dom 作为公共部分就不需要模块自己引入了（默认肯定已经存在）
 //import React from 'react';我可能有强迫症之前竟然觉得不手动引入会有什么不妥囧
 //import ReactDOM from 'react-dom';
@@ -124,7 +124,7 @@ ReactDOM.render(
       );
 
 ```
-```js
+```javascript
 //a.js
 function liz() {
     console.log("eeee");

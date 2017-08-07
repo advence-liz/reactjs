@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width">
+	<title>DocStrap Tutorial: webpack&require</title>
+
+	<!--[if lt IE 9]>
+	<script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+	<![endif]-->
+	<link type="text/css" rel="stylesheet" href="styles/sunlight.default.css">
+
+	<link type="text/css" rel="stylesheet" href="styles/site.cerulean.css">
+
+</head>
+
+<body>
+
+<div class="navbar navbar-default navbar-fixed-top navbar-inverse">
+<div class="container">
+	<div class="navbar-header">
+		<a class="navbar-brand" href="index.html">DocStrap</a>
+		<button class="navbar-toggle" type="button" data-toggle="collapse" data-target="#topNavigation">
+			<span class="icon-bar"></span>
+			<span class="icon-bar"></span>
+			<span class="icon-bar"></span>
+        </button>
+	</div>
+	<div class="navbar-collapse collapse" id="topNavigation">
+		<ul class="nav navbar-nav">
+			
+			<li class="dropdown">
+				<a href="modules.list.html" class="dropdown-toggle" data-toggle="dropdown">Modules<b class="caret"></b></a>
+				<ul class="dropdown-menu ">
+					<li><a href="module-base.html">base</a></li>
+				</ul>
+			</li>
+			
+			<li class="dropdown">
+				<a href="classes.list.html" class="dropdown-toggle" data-toggle="dropdown">Classes<b class="caret"></b></a>
+				<ul class="dropdown-menu ">
+					<li><a href="base.html">base</a></li><li><a href="IndexItem.html">IndexItem</a></li>
+				</ul>
+			</li>
+			
+			<li class="dropdown">
+				<a href="tutorials.list.html" class="dropdown-toggle" data-toggle="dropdown">Tutorials<b class="caret"></b></a>
+				<ul class="dropdown-menu ">
+					<li><a href="tutorial-webpack&require.html">webpack&require</a></li>
+				</ul>
+			</li>
+			
+		</ul>
+        
+            <div class="col-sm-3 col-md-3">
+                <form class="navbar-form" role="search">
+                    <div class="input-group">
+                        <input type="text" class="form-control" placeholder="Search" name="q" id="search-input">
+                        <div class="input-group-btn">
+                            <button class="btn btn-default" id="search-submit"><i class="glyphicon glyphicon-search"></i></button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        
+	</div>
+
+</div>
+</div>
+
+
+<div class="container" id="toc-content">
+<div class="row">
+
+	
+	<div class="col-md-12">
+	
+		<div id="main">
+			<section class="tutorial-section">
+
+<header>
+    
+
+    <h2>webpack&require</h2>
+</header>
+
+<article>
+    <h1>关于打包方案</h1><p>此文意在简要描述一下目前对模块加载的研究成果（我把文件代码都粘贴上来了这样比较直观）</p>
+<h2>简要介绍目前js模块加载方式</h2><ul>
+<li>ES6采用的module 加载规范 improt &amp; export </li>
+<li>NODE实现commonjs 加载规范 require &amp; module.export</li>
+<li>浏览器端只能采用AMD,CMD 之类的加载规范   require &amp; define</li>
+</ul>
+<h2>方案一require js</h2><p>假设有目录 js（包涵模块自定义的js文件），lib（公共js类库），dist（经过Babel转化后js存放目录）</p>
+<ul>
+<li>js<ul>
+<li>hello.js</li>
+<li>a.js</li>
+</ul>
+</li>
+<li>lib<ul>
+<li>react.js</li>
+<li>react-dom.js</li>
+</ul>
+</li>
+<li>dist<ul>
+<li>hello.js</li>
+<li>a.js</li>
+</ul>
+</li>
+</ul>
+<pre class="prettyprint source lang-xml"><code>&lt;!doctype html>
+&lt;html lang=&quot;en&quot;>
+  &lt;head>
+    &lt;meta charset=&quot;utf-8&quot;>
+    &lt;script data-main=&quot;../dist/hello&quot; src=&quot;http://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.1/require.js&quot;>&lt;/script>
+    &lt;title>React App&lt;/title>
+  &lt;/head>
+  &lt;body>
+    &lt;div id=&quot;root&quot;>&lt;/div>
+      &lt;script>
+          require.config({
+        //  baseUrl: &quot;../dist/js/&quot;, // the path where the  scripts are present
+          paths: {
+            &quot;react&quot;: &quot;../lib/react&quot;,
+            &quot;react-dom&quot;: &quot;../lib/react-dom&quot;
+          }
+        });
+      &lt;/script>
+      &lt;!--&lt;script src=&quot;../dist/hello.js&quot;>&lt;/script>-->
+  &lt;/body>
+
+&lt;/html></code></pre><pre class="prettyprint source lang-javascript"><code>//hello.js 依赖 React ReactDom a
+import React from 'react';
+import ReactDOM from 'react-dom';
+import a ,{fun,d}from &quot;./a&quot;
+console.log(a);
+console.log(d);
+fun();
+ReactDOM.render(
+        &lt;h1>Hello, world!&lt;/h1>,
+        document.getElementById('root')
+      );</code></pre><pre class="prettyprint source lang-js"><code>//a.js
+function liz() {
+    console.log(&quot;eeee&quot;);
+}
+
+var a = { liz: &quot;eeee&quot; };
+ export var d =&quot;eee&quot;;
+export default a;
+export { liz as fun };
+/**
+ * @prop default {a}
+ * @prop fun {liz}
+ */</code></pre><h2>方案二webpack</h2><p>假设有目录 js（包涵模块自定义的js文件），lib（公共js类库），dist（经过Babel转化后js存放目录，使用webpack 转换的文件会合并）</p>
+<ul>
+<li>js<ul>
+<li>hello.js</li>
+<li>a.js</li>
+</ul>
+</li>
+<li>lib<ul>
+<li>react.js</li>
+<li>react-dom.js</li>
+</ul>
+</li>
+<li>dist<ul>
+<li>bundle.js</li>
+</ul>
+</li>
+</ul>
+<pre class="prettyprint source lang-xml"><code>&lt;!doctype html>
+&lt;html lang=&quot;en&quot;>
+  &lt;head>
+    &lt;meta charset=&quot;utf-8&quot;>
+    &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1&quot;>
+    &lt;script src=&quot;../lib/react.js&quot;>&lt;/script>
+    &lt;script src=&quot;../lib/react-dom.js&quot;>&lt;/script>
+    &lt;title>React App&lt;/title>
+  &lt;/head>
+  &lt;body>
+    &lt;div id=&quot;root&quot;>&lt;/div>
+      &lt;script src=&quot;../dist/bundle.js&quot;>&lt;/script>
+  &lt;/body>
+
+&lt;/html></code></pre><pre class="prettyprint source lang-javascript"><code>//hello.js 依赖 React ReactDom a 当使用webpack 的时候我react 和react-dom 作为公共部分就不需要模块自己引入了（默认肯定已经存在）
+//import React from 'react';我可能有强迫症之前竟然觉得不手动引入会有什么不妥囧
+//import ReactDOM from 'react-dom';
+import a ,{fun,d}from &quot;./a&quot;
+console.log(a);
+console.log(d);
+fun();
+ReactDOM.render(
+        &lt;h1>Hello, world!&lt;/h1>,
+        document.getElementById('root')
+      );</code></pre><pre class="prettyprint source lang-javascript"><code>//a.js
+function liz() {
+    console.log(&quot;eeee&quot;);
+}
+
+var a = { liz: &quot;eeee&quot; };
+ export var d =&quot;eee&quot;;
+export default a;
+export { liz as fun };
+/**
+ * @prop default {a}
+ * @prop fun {liz}
+ */</code></pre>
+</article>
+
+</section>
+
+		</div>
+	</div>
+
+	<div class="clearfix"></div>
+
+	
+
+</div>
+</div>
+
+
+    <div class="modal fade" id="searchResults">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title">Search results</h4>
+          </div>
+          <div class="modal-body"></div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          </div>
+        </div><!-- /.modal-content -->
+      </div><!-- /.modal-dialog -->
+    </div>
+
+
+<footer>
+
+
+	<span class="copyright">
+	DocStrap Copyright © 2012-2013 The contributors to the JSDoc3 and DocStrap projects.
+	</span>
+
+<span class="jsdoc-message">
+	Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.4</a>
+	
+		on 2017-08-07T11:28:49+08:00
+	
+	using the <a href="https://github.com/docstrap/docstrap">DocStrap template</a>.
+</span>
+</footer>
+
+<script src="scripts/docstrap.lib.js"></script>
+<script src="scripts/toc.js"></script>
+
+    <script type="text/javascript" src="scripts/fulltext-search-ui.js"></script>
+
+
+<script>
+$( function () {
+	$( "[id*='$']" ).each( function () {
+		var $this = $( this );
+
+		$this.attr( "id", $this.attr( "id" ).replace( "$", "__" ) );
+	} );
+
+	$( ".tutorial-section pre, .readme-section pre, pre.prettyprint.source" ).each( function () {
+		var $this = $( this );
+
+		var example = $this.find( "code" );
+		exampleText = example.html();
+		var lang = /{@lang (.*?)}/.exec( exampleText );
+		if ( lang && lang[1] ) {
+			exampleText = exampleText.replace( lang[0], "" );
+			example.html( exampleText );
+			lang = lang[1];
+		} else {
+			var langClassMatch = example.parent()[0].className.match(/lang\-(\S+)/);
+			lang = langClassMatch ? langClassMatch[1] : "javascript";
+		}
+
+		if ( lang ) {
+
+			$this
+			.addClass( "sunlight-highlight-" + lang )
+			.addClass( "linenums" )
+			.html( example.html() );
+
+		}
+	} );
+
+	Sunlight.highlightAll( {
+		lineNumbers : true,
+		showMenu : true,
+		enableDoclinks : true
+	} );
+
+	$.catchAnchorLinks( {
+        navbarOffset: 10
+	} );
+	$( "#toc" ).toc( {
+		anchorName  : function ( i, heading, prefix ) {
+			return $( heading ).attr( "id" ) || ( prefix + i );
+		},
+		selectors   : "#toc-content h1,#toc-content h2,#toc-content h3,#toc-content h4",
+		showAndHide : false,
+		smoothScrolling: true
+	} );
+
+	$( "#main span[id^='toc']" ).addClass( "toc-shim" );
+	$( '.dropdown-toggle' ).dropdown();
+
+    $( "table" ).each( function () {
+      var $this = $( this );
+      $this.addClass('table');
+    } );
+
+} );
+</script>
+
+
+
+<!--Navigation and Symbol Display-->
+
+
+<!--Google Analytics-->
+
+
+
+    <script type="text/javascript">
+        $(document).ready(function() {
+            SearcherDisplay.init();
+        });
+    </script>
+
+
+</body>
+</html>
