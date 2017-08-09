@@ -4,7 +4,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width">
-	<title>DocStrap Class: Point</title>
+	<title>DocStrap Tutorial: Tutorial One</title>
 
 	<!--[if lt IE 9]>
 	<script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
@@ -95,624 +95,221 @@
 <div class="row">
 
 	
-	<div class="col-md-8">
+	<div class="col-md-12">
 	
 		<div id="main">
-			
-
-	<h1 class="page-title">Class: Point</h1>
-<section>
+			<section class="tutorial-section">
 
 <header>
     
-        <h2>
-            <span class="ancestors"><a href="es6.html">es6</a>.</span>
-        
-        Point
-        </h2>
-        
-            <div class="class-description"><p>Class representing a point.</p></div>
-        
+    <ul>
+        <li><a href="tutorial-pager.html">Child A</a></li>
     
+        <li><a href="tutorial-popup.html">Child B</a></li>
+    </ul>
+    
+
+    <h2>Tutorial One</h2>
 </header>
 
-
 <article>
-    <div class="container-overview">
-    
-        
-<hr>
-<dt>
-    <h4 class="name" id="Point"><span class="type-signature"></span>new Point(x, y)</h4>
-    
-    
-</dt>
-<dd>
+    <h1>Nav</h1><ul>
+<li>Author:李卓</li>
+</ul>
+<h2>创建控件</h2><h3>HTML代码</h3><pre class="prettyprint source lang-html"><code> &lt;h2>nav-tabs&lt;/h2>
+                &lt;div id=&quot;root&quot;>&lt;/div>
+                &lt;section>
+                    &lt;div id=&quot;aui-tab&quot; type=&quot;tab&quot;>&lt;/div>
 
-    
-    <div class="description">
-        <p>Create a point.</p>
-    </div>
-    
-
-    
-
-    
-
-    
-    
-        <h5>Parameters:</h5>
-        
-
-<table class="params table table-striped">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>x</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">number</span>
+                    &lt;div class=&quot;tab-content&quot; id=&quot;tab1&quot;>Block one&lt;/div>
+                    &lt;div class=&quot;tab-content&quot; id=&quot;tab2&quot;>Block two&lt;/div>
+                    &lt;div class=&quot;tab-content&quot; id=&quot;tab3&quot;>Block three&lt;/div>
 
 
+                &lt;/section></code></pre><h3>JavaScript代码</h3><pre class="prettyprint source lang-javascript"><code>//控件初始化参数 $$.init_nav 是一个全局的构造方法生成 Nav 所依赖的ArrayList (这个ArrayList是我自己构建的)
+  window.tabList = $$.init_nav([
+            { title: 'tab1', href: '#tab1' },
+            { title: 'tab2', href: '#tab2' },
+            { title: 'tab3', href: '#tab3' }
+        ]);
 
-            
-            </td>
+        $(&quot;#aui-tab&quot;).nav({ tabList: tabList });</code></pre><h3>React</h3><pre class="prettyprint source lang-javascript"><code>class Demo extends React.Component {
+    constructor(props) {
+        super(props);
 
-            
+            /**
+             * @desc options
+             * @prop {String} type 决定控件类型
+             * @prop {String} theme 决定控件主题
+             * @prop {String} disabledList 'all' 全部disabled '1 2 3'字符串中包含的index disabled
+             */
+            tabList: tabList,
+            type: 'nav-tabs',
+            selectedIndex: 1,
+            disabledList:'1 2',//
+            theme:'nav-default'
 
-            
+        this.handleChange = this.handleChange.bind(this);
+        this.resetTab = this.resetTab.bind(this);
+    }
+    selectedIndexChange(e, oldValue, newValue) {
+        console.log(oldValue);
+    }
+    // tabList为$$.Nav.ArrayList的实例 其中每个元素为 $$.Nav.TabsItem 的实例  下文有$$.Nav.ArrayList的源码 大家可以自由组合操作 tabList
+    resetTab() {
+        tabList.push(new $$.Nav.TabsItem('#tab1', 'tab1'));
+        this.setState({ tabList: tabList });
+    }
+    handleChange(event) {
+        this.setState({ selectedIndex: event.target.value });
+       // console.dir(this.refs.auinav);
+    }
 
-            <td class="description last"><p>The x value.</p></td>
-        </tr>
+    render() {
+        return (
 
-    
+            &lt;div>
+                &lt;R.Nav
+                    tabList={this.state.tabList}
+                    type={this.state.type}
+                    selectedIndex={this.state.selectedIndex}
+                    selectedIndexChange={this.selectedIndexChange}
+                    disabledList={this.state.disabledList}
 
-        <tr>
-            
-                <td class="name"><code>y</code></td>
-            
+                />
+                &lt;input type=&quot;number&quot; min=&quot;0&quot; value={this.state.selectedIndex} onChange={this.handleChange} />
+                &lt;button onClick={this.resetTab}>resetTab&lt;/button>
 
-            <td class="type">
-            
-                
-<span class="param-type">number</span>
+            &lt;/div>
+        )
+    }
+}
+
+ReactDOM.render(
+    &lt;Demo>&lt;/Demo>,
+    document.getElementById('root')
+);</code></pre><h3>ArrayList</h3><pre class="prettyprint source lang-js"><code> /**
+     * @class ArrayList
+     * @method unshift
+     * @method insert
+     * @method remove
+     * @method clear
+     * @method next
+     */
+    function ArrayList() {
+        var data_store = new Array;
+
+        this.cur_pos = 0;
+        this.length = 0;
+        this.push = function (item) {
+            data_store.push(item);
+            this.length++;
+            return this;
+        };
+        this.get = function (index) {
+            return data_store[index];
+        }
+        this.unshift = function (item) {
+            data_store.unshift(item);
+            this.length--;
+            return this;
+        };
+        /**
+         * 在指定索引处插入给定元素
+         * @method insert
+         * @param {TabItems}  represent dom 
+         * @param {number}  represent index（索引重零开始）
+         * @return{this}
+         */
+        this.insert = function (item, index) {
+            data_store.splice(index, 0, item);
+            this.length++;
+            return this;
+        };
+        /**
+         *  移除指定索引处的元素（索引重零开始）
+         * @method remove
+         * @param  {number}
+         * @param  {number}
+         * @return {this}
+         */
+        this.remove = function (index, length) {
+            length = length || 1;
+            data_store.splice(index, length);
+            this.length -= length;
+            return this;
+        };
+        this.clear = function () {
+            this.data_store.length = 0;
+            this.length = 0;
+            return this;
+        };
+        /**
+         * 获取 ArrayList 的下一个值
+         * @method
+         * @return {planObject} 当遍历到末尾时重置 cur_pos 并返回0 相当于 false
+         */
+        this.next = function () {
+            if (this.cur_pos &lt; this.length) {
+                return data_store[this.cur_pos++];
+            } else {
+                return !!(this.cur_pos = 0);
+            }
+        };
+        this.positon = function () {
+            return this.cur_pos;
+        }
+
+        this.toString = function () {
+            console.dir(data_store);
+        }
 
 
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"><p>The y value.</p></td>
-        </tr>
-
-    
-    </tbody>
+    }</code></pre><h2>控件参数</h2><table>
+<thead>
+<tr>
+<th>参数名</th>
+<th>类型</th>
+<th>默认值</th>
+<th>描述 </th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>tabLIst</td>
+<td>ArraryList</td>
+<td>&quot;&quot;</td>
+<td>nav 数据源</td>
+</tr>
+<tr>
+<td>type</td>
+<td>String</td>
+<td>'nav-tabs'</td>
+<td>生成的Nav 类型 还有 'nav-pills' </td>
+</tr>
+<tr>
+<td>theme</td>
+<td>String</td>
+<td>'nav-default'</td>
+<td>还有 'nav-stacked'</td>
+</tr>
+<tr>
+<td>selectedIndex</td>
+<td>Number</td>
+<td>0</td>
+<td>默认选中项</td>
+</tr>
+</tbody>
 </table>
-
-    
-
-    
-<dl class="details">
-    
-
-	
-
-	
-
-	
-
-    
-
-    
-
-    
-
-    
-
-	
-
-	
-
-	
-
-	
-
-	
-
-
-
-	
-	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
-	<dd class="tag-source">
-		<ul class="dummy">
-			<li>
-				<a href="class.js.html">class.js</a>,
-				 <a href="class.js.html#sunlight-1-line-24">line 24</a>
-			</li>
-		</ul>
-	</dd>
-	
-
-	
-
-	
-
-	
-</dl>
-
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-</dd>
-
-    
-    </div>
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-        <h3 class="subsection-title">Methods</h3>
-
-        <dl>
-            
-<hr>
-<dt>
-    <h4 class="name" id=".fromString"><span class="type-signature">&lt;static> </span>fromString(str)</h4>
-    
-    
-    <p class="summary">Convert a string containing two comma-separated numbers into a point.</p>
-    
-</dt>
-<dd>
-
-    
-    <div class="description">
-        <p>Convert a string containing two comma-separated numbers into a point.</p>
-    </div>
-    
-
-    
-
-    
-
-    
-    
-        <h5>Parameters:</h5>
-        
-
-<table class="params table table-striped">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>str</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">string</span>
-
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"><p>The string containing two comma-separated numbers.</p></td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-    
-
-    
-<dl class="details">
-    
-
-	
-
-	
-
-	
-
-    
-
-    
-
-    
-
-    
-
-	
-
-	
-
-	
-
-	
-
-	
-
-
-
-	
-	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
-	<dd class="tag-source">
-		<ul class="dummy">
-			<li>
-				<a href="class.js.html">class.js</a>,
-				 <a href="class.js.html#sunlight-1-line-55">line 55</a>
-			</li>
-		</ul>
-	</dd>
-	
-
-	
-
-	
-
-	
-</dl>
-
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <h5>Returns:</h5>
-    
-            
-<div class="param-desc">
-    <p>A Point object.</p>
-</div>
-
-
-
-<dl>
-    <dt>
-        Type
-    </dt>
-    <dd>
-        
-<span class="param-type">Point</span>
-
-
-
-    </dd>
-</dl>
-
-
-        
-
-    
-</dd>
-
-        
-            
-<hr>
-<dt>
-    <h4 class="name" id="getX"><span class="type-signature"></span>getX()</h4>
-    
-    
-    <p class="summary">Get the x value.</p>
-    
-</dt>
-<dd>
-
-    
-    <div class="description">
-        <p>Get the x value.</p>
-    </div>
-    
-
-    
-
-    
-
-    
-    
-
-    
-<dl class="details">
-    
-
-	
-
-	
-
-	
-
-    
-
-    
-
-    
-
-    
-
-	
-
-	
-
-	
-
-	
-
-	
-
-
-
-	
-	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
-	<dd class="tag-source">
-		<ul class="dummy">
-			<li>
-				<a href="class.js.html">class.js</a>,
-				 <a href="class.js.html#sunlight-1-line-38">line 38</a>
-			</li>
-		</ul>
-	</dd>
-	
-
-	
-
-	
-
-	
-</dl>
-
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <h5>Returns:</h5>
-    
-            
-<div class="param-desc">
-    <p>The x value.</p>
-</div>
-
-
-
-<dl>
-    <dt>
-        Type
-    </dt>
-    <dd>
-        
-<span class="param-type">number</span>
-
-
-
-    </dd>
-</dl>
-
-
-        
-
-    
-</dd>
-
-        
-            
-<hr>
-<dt>
-    <h4 class="name" id="getY"><span class="type-signature"></span>getY()</h4>
-    
-    
-    <p class="summary">Get the y value.</p>
-    
-</dt>
-<dd>
-
-    
-    <div class="description">
-        <p>Get the y value.</p>
-    </div>
-    
-
-    
-
-    
-
-    
-    
-
-    
-<dl class="details">
-    
-
-	
-
-	
-
-	
-
-    
-
-    
-
-    
-
-    
-
-	
-
-	
-
-	
-
-	
-
-	
-
-
-
-	
-	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
-	<dd class="tag-source">
-		<ul class="dummy">
-			<li>
-				<a href="class.js.html">class.js</a>,
-				 <a href="class.js.html#sunlight-1-line-46">line 46</a>
-			</li>
-		</ul>
-	</dd>
-	
-
-	
-
-	
-
-	
-</dl>
-
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <h5>Returns:</h5>
-    
-            
-<div class="param-desc">
-    <p>The y value.</p>
-</div>
-
-
-
-<dl>
-    <dt>
-        Type
-    </dt>
-    <dd>
-        
-<span class="param-type">number</span>
-
-
-
-    </dd>
-</dl>
-
-
-        
-
-    
-</dd>
-
-        </dl>
-    
-
-    
-
-    
 </article>
 
 </section>
-
-
-
 
 		</div>
 	</div>
 
 	<div class="clearfix"></div>
 
-	
-		<div class="col-md-3">
-			<div id="toc" class="col-md-3 hidden-xs hidden-sm hidden-md"></div>
-		</div>
 	
 
 </div>

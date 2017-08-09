@@ -1,0 +1,41 @@
+# jsdoc.config.json
+```json
+{
+    "tags": {
+        "allowUnknownTags": true,
+        "dictionaries": [
+            "jsdoc",
+            "closure"
+        ]
+    },
+    "source": {
+        "includePattern": ".+\\.js(doc|x)?$",
+        "excludePattern": "(^|\\/|\\\\)_",
+        "include": "src"
+    },
+    "opts": {
+        "destination": "./out/",
+        "recurse": true,
+        "readme": "README.md",
+        "template":"./node_modules/ink-docstrap/template",
+        "tutorials": "doc"
+    },
+    "plugins": [
+        "plugins/markdown",
+        "plugins/summarize"
+        
+    ],
+    "templates": {
+        "cleverLinks": false,
+        "monospaceLinks": false,
+        "outputSourceFiles": true,
+        "systemName": "DocStrap",
+        "copyright": "DocStrap Copyright © 2012-2013 The contributors to the JSDoc3 and DocStrap projects.",
+        "navType": "vertical",
+        "theme": "cerulean",
+        "linenums": true,
+        "collapseSymbols": false,
+        "inverseNav": true
+    }
+}
+```

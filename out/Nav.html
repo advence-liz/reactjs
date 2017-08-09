@@ -4,7 +4,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width">
-	<title>DocStrap Class: Point</title>
+	<title>DocStrap Class: Nav</title>
 
 	<!--[if lt IE 9]>
 	<script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
@@ -100,18 +100,14 @@
 		<div id="main">
 			
 
-	<h1 class="page-title">Class: Point</h1>
+	<h1 class="page-title">Class: Nav</h1>
 <section>
 
 <header>
     
         <h2>
-            <span class="ancestors"><a href="es6.html">es6</a>.</span>
-        
-        Point
+        Nav
         </h2>
-        
-            <div class="class-description"><p>Class representing a point.</p></div>
         
     
 </header>
@@ -123,15 +119,17 @@
         
 <hr>
 <dt>
-    <h4 class="name" id="Point"><span class="type-signature"></span>new Point(x, y)</h4>
+    <h4 class="name" id="Nav"><span class="type-signature"></span>new Nav()</h4>
     
+    
+    <p class="summary"><p>控件整体思路围绕 selectedIndex 为核心，所有变化都通过 selectedIndex 变化实现</p>.</p>
     
 </dt>
 <dd>
 
     
     <div class="description">
-        <p>Create a point.</p>
+        <p>控件整体思路围绕 selectedIndex 为核心，所有变化都通过 selectedIndex 变化实现</p>
     </div>
     
 
@@ -140,80 +138,6 @@
     
 
     
-    
-        <h5>Parameters:</h5>
-        
-
-<table class="params table table-striped">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>x</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">number</span>
-
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"><p>The x value.</p></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>y</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">number</span>
-
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"><p>The y value.</p></td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
     
 
     
@@ -251,8 +175,8 @@
 	<dd class="tag-source">
 		<ul class="dummy">
 			<li>
-				<a href="class.js.html">class.js</a>,
-				 <a href="class.js.html#sunlight-1-line-24">line 24</a>
+				<a href="widget.js.html">widget.js</a>,
+				 <a href="widget.js.html#sunlight-1-line-1">line 1</a>
 			</li>
 		</ul>
 	</dd>
@@ -303,17 +227,17 @@
             
 <hr>
 <dt>
-    <h4 class="name" id=".fromString"><span class="type-signature">&lt;static> </span>fromString(str)</h4>
+    <h4 class="name" id="._create"><span class="type-signature">&lt;static> </span>_create()</h4>
     
     
-    <p class="summary">Convert a string containing two comma-separated numbers into a point.</p>
+    <p class="summary"><p>create widget</p>.</p>
     
 </dt>
 <dd>
 
     
     <div class="description">
-        <p>Convert a string containing two comma-separated numbers into a point.</p>
+        <p>create widget</p>
     </div>
     
 
@@ -322,56 +246,6 @@
     
 
     
-    
-        <h5>Parameters:</h5>
-        
-
-<table class="params table table-striped">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>str</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">string</span>
-
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"><p>The string containing two comma-separated numbers.</p></td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
     
 
     
@@ -409,8 +283,8 @@
 	<dd class="tag-source">
 		<ul class="dummy">
 			<li>
-				<a href="class.js.html">class.js</a>,
-				 <a href="class.js.html#sunlight-1-line-55">line 55</a>
+				<a href="widget.js.html">widget.js</a>,
+				 <a href="widget.js.html#sunlight-1-line-37">line 37</a>
 			</li>
 		</ul>
 	</dd>
@@ -435,30 +309,6 @@
     
 
     
-    <h5>Returns:</h5>
-    
-            
-<div class="param-desc">
-    <p>A Point object.</p>
-</div>
-
-
-
-<dl>
-    <dt>
-        Type
-    </dt>
-    <dd>
-        
-<span class="param-type">Point</span>
-
-
-
-    </dd>
-</dl>
-
-
-        
 
     
 </dd>
@@ -467,17 +317,17 @@
             
 <hr>
 <dt>
-    <h4 class="name" id="getX"><span class="type-signature"></span>getX()</h4>
+    <h4 class="name" id="_setOption"><span class="type-signature"></span>_setOption()</h4>
     
     
-    <p class="summary">Get the x value.</p>
+    <p class="summary"><p>set options</p>.</p>
     
 </dt>
 <dd>
 
     
     <div class="description">
-        <p>Get the x value.</p>
+        <p>set options</p>
     </div>
     
 
@@ -523,8 +373,8 @@
 	<dd class="tag-source">
 		<ul class="dummy">
 			<li>
-				<a href="class.js.html">class.js</a>,
-				 <a href="class.js.html#sunlight-1-line-38">line 38</a>
+				<a href="widget.js.html">widget.js</a>,
+				 <a href="widget.js.html#sunlight-1-line-133">line 133</a>
 			</li>
 		</ul>
 	</dd>
@@ -549,144 +399,6 @@
     
 
     
-    <h5>Returns:</h5>
-    
-            
-<div class="param-desc">
-    <p>The x value.</p>
-</div>
-
-
-
-<dl>
-    <dt>
-        Type
-    </dt>
-    <dd>
-        
-<span class="param-type">number</span>
-
-
-
-    </dd>
-</dl>
-
-
-        
-
-    
-</dd>
-
-        
-            
-<hr>
-<dt>
-    <h4 class="name" id="getY"><span class="type-signature"></span>getY()</h4>
-    
-    
-    <p class="summary">Get the y value.</p>
-    
-</dt>
-<dd>
-
-    
-    <div class="description">
-        <p>Get the y value.</p>
-    </div>
-    
-
-    
-
-    
-
-    
-    
-
-    
-<dl class="details">
-    
-
-	
-
-	
-
-	
-
-    
-
-    
-
-    
-
-    
-
-	
-
-	
-
-	
-
-	
-
-	
-
-
-
-	
-	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
-	<dd class="tag-source">
-		<ul class="dummy">
-			<li>
-				<a href="class.js.html">class.js</a>,
-				 <a href="class.js.html#sunlight-1-line-46">line 46</a>
-			</li>
-		</ul>
-	</dd>
-	
-
-	
-
-	
-
-	
-</dl>
-
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <h5>Returns:</h5>
-    
-            
-<div class="param-desc">
-    <p>The y value.</p>
-</div>
-
-
-
-<dl>
-    <dt>
-        Type
-    </dt>
-    <dd>
-        
-<span class="param-type">number</span>
-
-
-
-    </dd>
-</dl>
-
-
-        
 
     
 </dd>

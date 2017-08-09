@@ -4,7 +4,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width">
-	<title>DocStrap Class: Point</title>
+	<title>DocStrap Source: widget.js</title>
 
 	<!--[if lt IE 9]>
 	<script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
@@ -95,611 +95,189 @@
 <div class="row">
 
 	
-	<div class="col-md-8">
+	<div class="col-md-12">
 	
 		<div id="main">
 			
 
-	<h1 class="page-title">Class: Point</h1>
+		<h1 class="page-title">Source: widget.js</h1>
+    
 <section>
+    <article>
+        <pre
+            class="sunlight-highlight-javascript linenums">/**
+ * @class Nav
+ * @desc 控件整体思路围绕 selectedIndex 为核心，所有变化都通过 selectedIndex 变化实现
+ * @history 为什么叫 nav 最开始的时候我想构建一个tabcontrol 控件，后来我发现 tabs  只属于NAV 的一种so 决定换名字，但是有些东西已经开始使用所以 就留下了 tabList 和 tabItems 
+ */
+$.widget("aui.nav", {
+    widgetEventPrefix: 'nav:',
+    //_create
+    $nav_ele: null,
+    $nav_items: null,
+    //_createContent
+    $navs_content: [],
+    /**
+     * _refresh method 中赋值
+     * @desc 全部为jQuery 对象
+     */
+    $cur_item: null,
+    $cur_content: null,
+    $selected_item: null,
+    $selected_content: null,
+
+    options: {
+        /**
+         * @desc options
+         * @prop {String} type 决定控件类型
+         * @prop {String} theme 决定控件主题
+         * @prop {String} disabledList 'all' 全部disabled '1 2 3'字符串中包含的index disabled
+         * @prop {Number|Bool} visible 当 nav-item 多的时候控制显隐默认值为true 即全部显示
+         */
+        tabList: new ArrayList,
+        theme: 'nav-default',
+        type: 'nav-tabs',
+        selectedIndex: 0,
+        disabledList: "",//  /\d+/g
+        visible: 2
+    },
+    /**
+     * create widget 
+     * @func _create
+     * @memberof Nav
+     */
+    _create: function () {
+
+        this.element.append(this._createContent());
+        this.$nav_ele = this.element.find('>.nav');
+        this.$nav_items = this.element.find('.nav__item');
+        if (this.options.visible !== true) {
+            this.$navItemsWithoutArrow = $(".nav__item:not(.nav__item--arrow)", this.element);
+            this.arrow_left_position = 1;
+            this.arrow_right_position = this.options.visible;
+            this.$nav_items.slice(this.options.visible+1,-1).toggleClass('none',true);           
+        }
+
+        this._on({
+            "click .nav__item:not(.nav__item--arrow)": function (event) {
+                var cur_activedom = $(event.currentTarget),
+                    index = cur_activedom.index(),
+                    isDisabled = false,
+                    disabledList = this.options.disabledList;
+
+                if (disabledList.toLowerCase() == 'all') {
+                    isDisabled = true;
+                } else {
+                    try {
+                        isDisabled = disabledList.match(/\d+/g).indexOf(index.toString()) > -1;
+                    } catch (error) {
+                        //   isDisabled = false;
+                    }
+
+                }
+
+
+                isDisabled ?
+                    null :
+                    this._setOption("selectedIndex", index);
+                //阻止锚点默认行为
+                event.preventDefault();
+
+            },
+            "click .nav__item--arrow": function (event) {
+                var cur_activedom = $(event.currentTarget),
+                    direction = !!cur_activedom.index();//true + false -
+
+                if (direction &amp;&amp; this.arrow_right_position &lt; this.options.tabList.length - this.options.visible ||
+                    !direction &amp;&amp; this.arrow_left_position > 1
+                ) {
+                    //true + right |false - left
+                    if (direction) {
+                        this.arrow_left_position++;
+                        this.arrow_right_position++;
+                    } else {
+                        this.arrow_left_position--;
+                        this.arrow_right_position--;
+                    }
+
+                    this._shuffle(direction);
+                }
+
+
 
-<header>
-    
-        <h2>
-            <span class="ancestors"><a href="es6.html">es6</a>.</span>
-        
-        Point
-        </h2>
-        
-            <div class="class-description"><p>Class representing a point.</p></div>
-        
-    
-</header>
-
-
-<article>
-    <div class="container-overview">
-    
-        
-<hr>
-<dt>
-    <h4 class="name" id="Point"><span class="type-signature"></span>new Point(x, y)</h4>
-    
-    
-</dt>
-<dd>
-
-    
-    <div class="description">
-        <p>Create a point.</p>
-    </div>
-    
-
-    
-
-    
-
-    
-    
-        <h5>Parameters:</h5>
-        
-
-<table class="params table table-striped">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>x</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">number</span>
-
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"><p>The x value.</p></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>y</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">number</span>
-
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"><p>The y value.</p></td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-    
-
-    
-<dl class="details">
-    
-
-	
-
-	
-
-	
-
-    
-
-    
-
-    
-
-    
-
-	
-
-	
-
-	
-
-	
-
-	
-
-
-
-	
-	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
-	<dd class="tag-source">
-		<ul class="dummy">
-			<li>
-				<a href="class.js.html">class.js</a>,
-				 <a href="class.js.html#sunlight-1-line-24">line 24</a>
-			</li>
-		</ul>
-	</dd>
-	
-
-	
-
-	
-
-	
-</dl>
-
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-</dd>
-
-    
-    </div>
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-        <h3 class="subsection-title">Methods</h3>
-
-        <dl>
-            
-<hr>
-<dt>
-    <h4 class="name" id=".fromString"><span class="type-signature">&lt;static> </span>fromString(str)</h4>
-    
-    
-    <p class="summary">Convert a string containing two comma-separated numbers into a point.</p>
-    
-</dt>
-<dd>
-
-    
-    <div class="description">
-        <p>Convert a string containing two comma-separated numbers into a point.</p>
-    </div>
-    
-
-    
-
-    
-
-    
-    
-        <h5>Parameters:</h5>
-        
-
-<table class="params table table-striped">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>str</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">string</span>
-
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"><p>The string containing two comma-separated numbers.</p></td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-    
-
-    
-<dl class="details">
-    
-
-	
-
-	
-
-	
-
-    
-
-    
-
-    
-
-    
-
-	
-
-	
-
-	
-
-	
-
-	
-
-
-
-	
-	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
-	<dd class="tag-source">
-		<ul class="dummy">
-			<li>
-				<a href="class.js.html">class.js</a>,
-				 <a href="class.js.html#sunlight-1-line-55">line 55</a>
-			</li>
-		</ul>
-	</dd>
-	
-
-	
-
-	
-
-	
-</dl>
-
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <h5>Returns:</h5>
-    
-            
-<div class="param-desc">
-    <p>A Point object.</p>
-</div>
-
-
-
-<dl>
-    <dt>
-        Type
-    </dt>
-    <dd>
-        
-<span class="param-type">Point</span>
-
-
-
-    </dd>
-</dl>
-
-
-        
-
-    
-</dd>
-
-        
-            
-<hr>
-<dt>
-    <h4 class="name" id="getX"><span class="type-signature"></span>getX()</h4>
-    
-    
-    <p class="summary">Get the x value.</p>
-    
-</dt>
-<dd>
-
-    
-    <div class="description">
-        <p>Get the x value.</p>
-    </div>
-    
-
-    
-
-    
-
-    
-    
-
-    
-<dl class="details">
-    
-
-	
-
-	
-
-	
-
-    
-
-    
-
-    
-
-    
-
-	
-
-	
-
-	
-
-	
-
-	
-
-
-
-	
-	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
-	<dd class="tag-source">
-		<ul class="dummy">
-			<li>
-				<a href="class.js.html">class.js</a>,
-				 <a href="class.js.html#sunlight-1-line-38">line 38</a>
-			</li>
-		</ul>
-	</dd>
-	
-
-	
-
-	
-
-	
-</dl>
-
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <h5>Returns:</h5>
-    
-            
-<div class="param-desc">
-    <p>The x value.</p>
-</div>
-
-
-
-<dl>
-    <dt>
-        Type
-    </dt>
-    <dd>
-        
-<span class="param-type">number</span>
-
-
-
-    </dd>
-</dl>
-
-
-        
-
-    
-</dd>
-
-        
-            
-<hr>
-<dt>
-    <h4 class="name" id="getY"><span class="type-signature"></span>getY()</h4>
-    
-    
-    <p class="summary">Get the y value.</p>
-    
-</dt>
-<dd>
-
-    
-    <div class="description">
-        <p>Get the y value.</p>
-    </div>
-    
-
-    
-
-    
-
-    
-    
-
-    
-<dl class="details">
-    
-
-	
-
-	
-
-	
-
-    
-
-    
-
-    
-
-    
-
-	
-
-	
-
-	
-
-	
-
-	
-
-
-
-	
-	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
-	<dd class="tag-source">
-		<ul class="dummy">
-			<li>
-				<a href="class.js.html">class.js</a>,
-				 <a href="class.js.html#sunlight-1-line-46">line 46</a>
-			</li>
-		</ul>
-	</dd>
-	
-
-	
-
-	
-
-	
-</dl>
-
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <h5>Returns:</h5>
-    
-            
-<div class="param-desc">
-    <p>The y value.</p>
-</div>
-
-
-
-<dl>
-    <dt>
-        Type
-    </dt>
-    <dd>
-        
-<span class="param-type">number</span>
-
-
-
-    </dd>
-</dl>
-
-
-        
-
-    
-</dd>
-
-        </dl>
-    
-
-    
-
-    
-</article>
-
+            },
+            /**
+             * @desc 调用ArrayList 方法重置tabItems
+             * @interface
+             * @param {Event}
+             * @param {planObject}->{method:'methodName',options:[arguments]}
+             * @demo $(":aui-nav").trigger('nav:invoke',{method:'push',options:{item:new $$.Nav.TabsItem('#tab1', 'tab1')}})
+             * @demo $(":aui-nav").trigger('nav:invoke',{method:'insert',options:{item:new $$.Nav.TabsItem('#tab1', 'tab1')}})
+             * @demo $(":aui-nav").trigger('nav:invoke',{method:'remove',options:{index:1}});
+             */
+            "nav:invoke": function (event, planObject) {
+
+                try {
+                    var method = planObject.method,//{string}
+                        options = planObject.options;//{Object}
+                    this._invokeList(method, options);
+                } catch (error) {
+                    console.log(error);
+                }
+
+            }
+        });
+        this.options.tabList.active = false;
+        this._refresh();
+
+
+    },
+    /**
+     * set options
+     * @func 
+     * @memberof Nav#
+     */
+    _setOption: function (key, value) {
+        var oldValue = this.options[key];
+        var newValue = value;
+        switch (key) {
+            case 'selectedIndex': {
+                if (oldValue != newValue) {
+                    this._trigger("selectedindexchange", null, [oldValue, newValue]);
+                } else {
+                    return;
+                }
+
+                $.Widget.prototype._setOption.apply(this, arguments);
+                this._refresh();
+                break;
+            }
+            case 'tabList': {
+                if (this.options.tabList.active) {
+
+                    $.Widget.prototype._setOption.apply(this, arguments);
+                    this._resetNav();
+                    this._refresh();
+                } else {
+                    return;
+                }
+                this.options.tabList.active = false;
+                break;
+            }
+            default:
+                $.Widget.prototype._setOption.apply(this, arguments);
+
+        }
+    }
+   
+   
+})
+
+  
+</pre>
+    </article>
 </section>
+
 
 
 
@@ -709,10 +287,6 @@
 
 	<div class="clearfix"></div>
 
-	
-		<div class="col-md-3">
-			<div id="toc" class="col-md-3 hidden-xs hidden-sm hidden-md"></div>
-		</div>
 	
 
 </div>

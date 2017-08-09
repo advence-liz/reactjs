@@ -4,7 +4,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width">
-	<title>DocStrap Class: IndexItem</title>
+	<title>DocStrap Source: class.jsx</title>
 
 	<!--[if lt IE 9]>
 	<script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
@@ -47,7 +47,7 @@
 			<li class="dropdown">
 				<a href="classes.list.html" class="dropdown-toggle" data-toggle="dropdown">Classes<b class="caret"></b></a>
 				<ul class="dropdown-menu ">
-					<li><a href="base.html">base</a></li><li><a href="es5.PointES5.html">es5.PointES5</a></li><li><a href="es5.PointOBJ.html">es5.PointOBJ</a></li><li><a href="es6.Point.html">es6.Point</a></li><li><a href="IndexItem.html">IndexItem</a></li><li><a href="Nav.html">Nav</a></li><li><a href="Person.html">Person</a></li>
+					<li><a href="base.html">base</a></li><li><a href="es5.PointES5.html">es5.PointES5</a></li><li><a href="es5.PointOBJ.html">es5.PointOBJ</a></li><li><a href="es6.Point.html">es6.Point</a></li><li><a href="IndexItem.html">IndexItem</a></li><li><a href="Person.html">Person</a></li>
 				</ul>
 			</li>
 			
@@ -61,7 +61,7 @@
 			<li class="dropdown">
 				<a href="tutorials.list.html" class="dropdown-toggle" data-toggle="dropdown">Tutorials<b class="caret"></b></a>
 				<ul class="dropdown-menu ">
-					<li><a href="tutorial-jsdoc.config.html">jsdoc.config</a></li><li><a href="tutorial-nav_.html">Tutorial One</a></li><li><a href="tutorial-webpack&require.html">Tutorial Two</a></li>
+					<li><a href="tutorial-jsdoc.config.html">jsdoc.config</a></li><li><a href="tutorial-nav.html">Tutorial One</a></li><li><a href="tutorial-webpack&require.html">Tutorial Two</a></li>
 				</ul>
 			</li>
 			
@@ -95,219 +95,166 @@
 <div class="row">
 
 	
-	<div class="col-md-8">
+	<div class="col-md-12">
 	
 		<div id="main">
 			
 
-	<h1 class="page-title">Class: IndexItem</h1>
+		<h1 class="page-title">Source: class.jsx</h1>
+    
 <section>
-
-<header>
-    
-        <h2>
-        IndexItem
-        </h2>
-        
-            <div class="class-description"><p>construct of indexItem</p></div>
-        
-    
-</header>
-
-
-<article>
-    <div class="container-overview">
-    
-        
-<hr>
-<dt>
-    <h4 class="name" id="IndexItem"><span class="type-signature"></span>new IndexItem()</h4>
-    
-    
-</dt>
-<dd>
-
-    
-
-    
-
-    
-
-    
-    
-
-    
-<dl class="details">
-    
-
-    <h5 class="subsection-title">Properties:</h5>
-
-    <dl>
-
-<table class="props table table-striped">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>title</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">String</span>
-
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"><p>link title</p></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>path</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">String</span>
-
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"><p>link path</p></td>
-        </tr>
-
-    
-    </tbody>
-</table>
-</dl>
-
-    
-
-	
-
-	
-
-	
-
-    
-
-    
-
-    
-
-    
-
-	
-
-	
-
-	
-
-	
-
-	
-
-
-
-	
-	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
-	<dd class="tag-source">
-		<ul class="dummy">
-			<li>
-				<a href="index.js.html">index.js</a>,
-				 <a href="index.js.html#sunlight-1-line-61">line 61</a>
-			</li>
-		</ul>
-	</dd>
-	
-
-	
-
-	
-	<dt class="tag-see method-doc-label method-doc-details-label">See:</dt>
-	<dd class="tag-see">
-		<ul>
-			<li>{<a href="Person.html">Person</a>}</li>
-			</ul>
-	</dd>
-	
-
-	
-</dl>
-
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-</dd>
-
-    
-    </div>
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-</article>
-
+    <article>
+        <pre
+            class="sunlight-highlight-javascript linenums">&lt;Fun> &lt;/Fun>
+
+const Listing = React.createClass({
+  // ...
+  render() {
+    return &lt;div>{this.state.hello}&lt;/div>;
+  }
+});
+/**
+ * Creates a new Person.
+ * @class
+ */
+function Person() {
+}
+
+var p = new Person();
+
+
+/** Class representing a point. 
+ * @class
+ * @memberof  es6
+ * 
+*/
+class Point {
+  /**
+   * Create a point.
+   * @param {number} x - The x value.
+   * @param {number} y - The y value.
+   */
+  constructor(x, y) {
+    // ...
+  }
+
+  /**
+   * Get the x value.
+   * @return {number} The x value.
+   */
+  getX() {
+    // ...
+  }
+
+  /**
+   * Get the y value.
+   * @return {number} The y value.
+   */
+  getY() {
+    // ...
+  }
+
+  /**
+   * Convert a string containing two comma-separated numbers into a point.
+   * @param {string} str - The string containing two comma-separated numbers.
+   * @return {Point} A Point object.
+   */
+  static fromString(str) {
+    // ...
+  }
+}
+
+
+
+/** Class representing a point. 
+ * @class
+ * @param {number} x - The x value.
+ * @param {number} y - The y value.
+ * @memberof  es5
+ * 
+*/
+function PointES5() {
+  /**
+   * Create a point.
+   * @param {number} x - The x value.
+   * @param {number} y - The y value.
+   */
+  this.constructor = function (x, y) {
+    // ...
+  }
+
+  /**
+   * Get the x value.
+   * @return {number} The x value.
+   */
+  this.getX = function () {
+    // ...
+  }
+
+  /**
+   * Get the y value.
+   * @return {number} The y value.
+   */
+  this.getY = function () {
+    // ...
+  }
+
+}
+
+/**
+ * Convert a string containing two comma-separated numbers into a point.
+ * @param {string} str - The string containing two comma-separated numbers.
+ * @return {Point} A Point object.
+ */
+
+PointES5.fromString = function (str) {
+
+}
+
+/** Class representing a point. 
+ * @class
+ * @memberof  es5
+ * 
+*/
+
+ var PointOBJ= {
+  /**
+   * Create a point.
+   * @param {number} x - The x value.
+   * @param {number} y - The y value.
+   * @memberof es6#
+   */
+  constructor : function (x, y) {
+    // ...
+  },
+  /**
+   * name
+   * @prop
+   * @memberof es6#
+   */
+ name:"liz",
+  /**
+   * Get the x value.
+   * @public
+   * @return {number} The x value.
+   */
+  getX :function () {
+    // ...
+  },
+
+  /**
+   * Get the y value.
+   * @return {number} The y value.
+   */
+  getY : function () {
+    // ...
+  }
+
+}
+</pre>
+    </article>
 </section>
+
 
 
 
@@ -317,10 +264,6 @@
 
 	<div class="clearfix"></div>
 
-	
-		<div class="col-md-3">
-			<div id="toc" class="col-md-3 hidden-xs hidden-sm hidden-md"></div>
-		</div>
 	
 
 </div>
@@ -353,7 +296,7 @@
 <span class="jsdoc-message">
 	Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.4</a>
 	
-		on 2017-08-08T09:58:10+08:00
+		on 2017-08-08T09:49:22+08:00
 	
 	using the <a href="https://github.com/docstrap/docstrap">DocStrap template</a>.
 </span>
