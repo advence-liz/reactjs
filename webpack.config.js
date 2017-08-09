@@ -21,11 +21,11 @@ module.exports = {
 
     module: {
         rules: [
-            {
-                test: /\.jsx$/,
-                enforce: "pre",
-                loader: "eslint-loader"
-            },
+            // {
+            //     test: /\.jsx$/,
+            //     enforce: "pre",
+            //     loader: "eslint-loader"
+            // },
             {
                 test: /\.(js|jsx)$/,
                 exclude: /(node_modules|bower_components)/,

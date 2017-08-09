@@ -5,10 +5,25 @@ import {
   Route,
   Link
 } from 'react-router-dom'
+import Letter from './component/Letter.jsx'
 const Home = () => (
   <div>
     <h2>Home</h2>
-    <iframe src="https://gist.github.com/advence-liz"/>
+    <div>
+      <Letter color="red">A1</Letter>
+    </div>
+    <div>
+      <Letter color="blue">A2</Letter>
+    </div>
+    <div>
+      <Letter>A3</Letter>
+    </div>
+    <div>
+      <Letter color="yellow">A4</Letter>
+    </div>
+    <div>
+      <Letter>A5</Letter>
+    </div>
   </div>
 )
 
@@ -54,34 +69,41 @@ const Topic = ({ match }) => (
 /**
  * construct of indexItem
  * @constructor
- * @prop {String} title link title
- * @prop {String} path  link path
- * @see {Person}
+ * @param {String} title link title
+ * @param {String} path  link path
  */
 class IndexItem {
-  constructor(title, path) {
+  constructor(title, path, component) {
     this.title = title;
     this.path = path;
+    this.component = component;
   }
+
 }
-// let componentList=[]
-let indexList = [new IndexItem('Home',`/`),new IndexItem('About',`/about`),new IndexItem('Topics',`/topics`)];
-const linkList = indexList.map(function(item){
- return <li><Link to={item.path} >{item.title}</Link></li>
+// list of instacne of IndexItem
+let indexList = [
+  new IndexItem('Home', `/`, Home),
+  new IndexItem('About', `/about`, About),
+  new IndexItem('Topics', `/topics`, Topics)
+];
+
+const linkList = indexList.map(function (item) {
+  return <li><Link to={item.path} >{item.title}</Link></li>
 })
-const routeList=indexList.map((item)=> <Route exact path={item.path} component={Home} /> )
+
+const routeList = indexList.map((item) => <Route exact path={item.path} component={item.component} />)
 const Index = () => (
   <Router>
     <div>
       <ul>
-       {linkList}
+        {linkList}
       </ul>
 
       <hr />
-
-      <Route exact path="/" component={Home} />
+      {routeList}
+      {/* <Route exact path="/" component={Home} />
       <Route path="/about" component={About} />
-      <Route path="/topics" component={Topics} />
+      <Route path="/topics" component={Topics} /> */}
     </div>
   </Router>
 )
