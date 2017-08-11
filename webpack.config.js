@@ -1,18 +1,19 @@
 var webpack = require('webpack');
 var path = require("path"),
     HtmlWebpackPlugin = require('html-webpack-plugin');
-  //  CommonsChunkPlugin = webpack.optimize.CommonsChunkPlugin;
+//  CommonsChunkPlugin = webpack.optimize.CommonsChunkPlugin;
 
-
+console.log(path.join(__dirname,"..",".."));
 module.exports = {
     entry: {
         bundle: "./src/index.js",
-        //a:"./src/a.js",
-        vendor: ["react", "react-dom"]
+
+        //   vendor: ["react", "react-dom"]
     },
     output: {
         path: path.resolve(__dirname, 'dist'),
         filename: "[name].js",
+        // library: "[name]_[hash]"
         // chunkFilename: '[name]-[id].js',
         // library: "$d",
         // publicPath: "../build/"
@@ -61,24 +62,33 @@ module.exports = {
             filename: 'index.html',
             template: 'template/_layout.html'
         }),
+
+        new webpack.DllReferencePlugin({
+            context:path.resolve(__dirname,".."),
+            manifest: require('./js/vendor-manifest.json'),
+        })
         /**
          *引入vendor 引入第三方库（node_modules)的时候，不依赖 CommonsChunkPlugin插件也有效自己定义的文件入口不行
          */
-        new webpack.optimize.CommonsChunkPlugin({
-            name: "vendor",
+        // new webpack.optimize.CommonsChunkPlugin({
+        //     name: "vendor",
 
-            // filename: "vendor.js"
-            // (Give the chunk a different name)
+        //     // filename: "vendor.js"
+        //     // (Give the chunk a different name)
 
-            minChunks: Infinity,
-            // (with more entries, this ensures that no other module
-            //  goes into the vendor chunk)
-        })
+        //     minChunks: Infinity,
+        //     // (with more entries, this ensures that no other module
+        //     //  goes into the vendor chunk)
+        // })
     ],
-    // externals: [
-    //     'react',
-    //     'react-dom'
-    // ],
+    externals: {
+        'react': 'React',
+        'react-dom': 'ReactDOM',
+        'react-router-dom': 'ReactRouterDOM',
+        'redux': 'Redux',
+        'react-redux': 'ReactRedux',
+        'react-router': 'ReactRouter',
+    },
     devServer: {
         contentBase: path.join(__dirname, "dist"),
         compress: true,
