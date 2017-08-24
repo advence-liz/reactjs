@@ -63,10 +63,10 @@ module.exports = {
             template: 'template/_layout.html'
         }),
 
-        new webpack.DllReferencePlugin({
-            context:path.resolve(__dirname,".."),
-            manifest: require('./js/vendor-manifest.json'),
-        })
+        // new webpack.DllReferencePlugin({
+        //     context:path.resolve(__dirname,".."),
+        //     manifest: require('./js/vendor-manifest.json'),
+        // })
         /**
          *引入vendor 引入第三方库（node_modules)的时候，不依赖 CommonsChunkPlugin插件也有效自己定义的文件入口不行
          */
@@ -80,14 +80,23 @@ module.exports = {
         //     // (with more entries, this ensures that no other module
         //     //  goes into the vendor chunk)
         // })
+//         window.__lib.copy=require("copy-to-clipboard"); 
+// window.__lib.CryptoJS=require("crypto-js");
+// window.__lib["prop-types"]=require("prop-types"); 
+// window.__lib["babel-polyfill"]=require("babel-polyfill");
+      
     ],
     externals: {
-        'react': 'React',
-        'react-dom': 'ReactDOM',
-        'react-router-dom': 'ReactRouterDOM',
-        'redux': 'Redux',
-        'react-redux': 'ReactRedux',
-        'react-router': 'ReactRouter',
+        'react': ' window.__lib.React',
+        'react-dom': ' window.__lib.ReactDOM',
+        'react-router-dom': ' window.__lib.ReactRouterDOM',
+        'redux': ' window.__lib.Redux',
+        'react-redux': ' window.__lib.ReactRedux',
+        'react-router': ' window.__lib.ReactRouter',
+        'crypto-js':'window.__lib.CryptoJS',
+        'copy-to-clipboard':'window.__lib.Copy',
+        'babel-polyfill':'window.__lib.BabelPolyfill',
+        'prop-types':'window.__lib.PropTypes'
     },
     devServer: {
         contentBase: path.join(__dirname, "dist"),

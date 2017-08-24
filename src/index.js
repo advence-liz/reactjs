@@ -1,5 +1,6 @@
 import React from 'react';
-
+// require("prop-types");
+ require("babel-polyfill");
 import ReactDOM, { render } from 'react-dom';
 import {
   BrowserRouter as Router,

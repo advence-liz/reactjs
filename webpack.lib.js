@@ -5,12 +5,12 @@ var path = require("path");
 
 module.exports = {
     entry: {
-        lib: "./lib/lib.js"
+        lib: "./lib/lib.entry.js"
     },
     output: {
         path: path.join(__dirname, "lib"),
-        filename: "[name].bundle.js"
-     
+        filename: "[name].bundle.min.js"
+
 
     },
     context: __dirname,
@@ -24,6 +24,13 @@ module.exports = {
     resolve: {
         extensions: [".js", ".jsx"]
     },
-
+    plugins: [
+        new webpack.DefinePlugin({
+            'process.env': {
+                NODE_ENV: JSON.stringify('production')
+            }
+        }),
+        new webpack.optimize.UglifyJsPlugin()
+    ]
 
 };
