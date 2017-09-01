@@ -6,12 +6,12 @@ var path = require("path"),
 
 module.exports = {
     entry: {
-        bundle: "./src/index.jsx",
+       thinking:'./src/think.jsx'
 
       
     },
     output: {
-        path: path.resolve(__dirname, 'dist'),
+        path: path.resolve(__dirname, 'build'),
         filename: "[name].js",
       
 
@@ -50,17 +50,17 @@ module.exports = {
         // directories where to look for modules
         extensions: [".js", ".json", ".jsx", ".css"],
     },
-    plugins: [
-        new HtmlWebpackPlugin({
-            filename: 'index.html',
-            template: 'template/_layout.html'
-        }),
-    ],
+    // plugins: [
+    //     new HtmlWebpackPlugin({
+    //         filename: 'index.html',
+    //         template: 'template/_layout.html'
+    //     }),
+    // ],
     
-    devServer: {
-        contentBase: path.join(__dirname, "dist"),
-        compress: true,
-        port: 9000
-    }
+    // devServer: {
+    //     contentBase: path.join(__dirname, "dist"),
+    //     compress: true,
+    //     port: 9000
+    // }
 
 };
