@@ -7,7 +7,7 @@
     "lib": "webpack --config webpack.lib.js",
     "pre": "webpack --config webpack.vendor.js",
     "build": "webpack --progress --profile --colors",
-    "start-server": "webpack-dev-server --inline --hot",
+    "start:server": "webpack-dev-server --inline --hot",
     "start": "launch",
     "analyse":"webpack --profile --json>analyse.json",
     "doc": "jsdoc -c jsdoc.config.json"

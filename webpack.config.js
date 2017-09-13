@@ -6,7 +6,7 @@ var path = require("path"),
 
 module.exports = {
     entry: {
-       thinking:'./src/think.jsx'
+       thinking:'./src/thinking.jsx'
 
       
     },
