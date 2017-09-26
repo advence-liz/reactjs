@@ -6,7 +6,7 @@ var path = require("path"),
 
 module.exports = {
     entry: {
-       thinking:'./src/thinking.jsx'
+       thinking:'./src'
 
       
     },
@@ -38,8 +38,7 @@ module.exports = {
 
     },
     context: __dirname,
-    //devtool: "source-map",
-    devtool:"cheap-module-eval-source-map",
+    devtool: "source-map",
     target: "web",
     resolve: {
         // options for resolving module requests
@@ -51,17 +50,17 @@ module.exports = {
         // directories where to look for modules
         extensions: [".js", ".json", ".jsx", ".css"],
     },
-    // plugins: [
-    //     new HtmlWebpackPlugin({
-    //         filename: 'index.html',
-    //         template: 'template/_layout.html'
-    //     }),
-    // ],
+    plugins: [
+        new HtmlWebpackPlugin({
+            filename: 'index.html',
+            template: 'template/_layout.html'
+        }),
+    ],
     
-    // devServer: {
-    //     contentBase: path.join(__dirname, "dist"),
-    //     compress: true,
-    //     port: 9000
-    // }
+    devServer: {
+        contentBase: path.join(__dirname, "dist"),
+        compress: true,
+        port: 9000
+    }
 
 };

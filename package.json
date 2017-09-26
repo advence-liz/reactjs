@@ -4,13 +4,9 @@
   "description": "convert es6 to es5",
   "main": "gulpfile.js",
   "scripts": {
-    "lib": "webpack --config webpack.lib.js",
-    "pre": "webpack --config webpack.vendor.js",
     "build": "webpack --progress --profile --colors",
-    "start:server": "webpack-dev-server --inline --hot",
-    "start": "launch",
-    "analyse":"webpack --profile --json>analyse.json",
-    "doc": "jsdoc -c jsdoc.config.json"
+    "start": "webpack-dev-server --inline --hot",
+    "analyse":"webpack --profile --json>analyse.json"
   },
   "keywords": [
     "babel",
