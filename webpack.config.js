@@ -38,7 +38,8 @@ module.exports = {
 
     },
     context: __dirname,
-    devtool: "source-map",
+    //devtool: "source-map",
+    devtool:"cheap-module-eval-source-map",
     target: "web",
     resolve: {
         // options for resolving module requests
