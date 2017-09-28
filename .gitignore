@@ -5,7 +5,9 @@ node_modules/
 out/
 test/
 #dist/
+build/
 .vscode/
+*.log
 bower_components/
 
 @@ -0,0 +1,43 @@

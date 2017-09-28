@@ -6,7 +6,7 @@ var path = require("path"),
 
 module.exports = {
     entry: {
-       thinking:'./src'
+       index:'./src'
 
       
     },
@@ -53,7 +53,8 @@ module.exports = {
     plugins: [
         new HtmlWebpackPlugin({
             filename: 'index.html',
-            template: 'template/_layout.html'
+            template: 'template/_layout.html',
+            favicon:"template/favicon.ico"
         }),
     ],
     
