@@ -11,9 +11,9 @@ function passAndHint(cm) {
 class CodeBlock extends React.Component {
     constructor(props) {
       super(props);
-      this.state = {
-        value: this.props.value
-      };
+    //   this.state = {
+    //     value: this.props.value
+    //   };
       this.handleChange = this.handleChange.bind(this);
     }
     handleChange(event) {
@@ -66,7 +66,7 @@ class CodeBlock extends React.Component {
       const element = (
         <div className="row">
          
-          <textarea value={this.state.value} onChange={this.handleChange}
+          <textarea value={this.props.value} onChange={this.handleChange}
             className="col-md-6"
             ref={(input) => { this.textInput = input; }}
           />
