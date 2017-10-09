@@ -1,3 +1,13 @@
+import React from 'react';
+
+CodeMirror.commands.autocomplete = function(cm) {
+    CodeMirror.showHint(cm, CodeMirror.htmlHint);
+}
+ 
+function passAndHint(cm) {
+  setTimeout(function() {cm.execCommand("autocomplete");}, 100);
+  return CodeMirror.Pass;
+}
 class CodeBlock extends React.Component {
     constructor(props) {
       super(props);
@@ -15,7 +25,14 @@ class CodeBlock extends React.Component {
         mode: 'text/html',
         tabMode: 'indent',
         theme:'monokai',
-        lineNumbers: true
+        lineNumbers: true,
+        autoCloseTags: true,
+        extraKeys: {
+            "Tab": "autocomplete",
+            // "' '": passAndHint,
+            "'<'":passAndHint,
+            "Ctrl-Space": "autocomplete"
+        },
       });
       this.textInput.nextElementSibling.classList.add("col-md-6");
       var previewFrame = this.previewFrame;
@@ -32,7 +49,8 @@ class CodeBlock extends React.Component {
             <meta charset="UTF-8">
             <meta name="viewport" content="width=device-width, initial-scale=1.0">
             <meta http-equiv="X-UA-Compatible" content="ie=edge">
-            <title>Document</title>
+            <title>DEMO</title>
+            <link rel="stylesheet" href="http://10.2.165.40:8000/dist/gui/auiframework.css">
         </head>
         <body>
             ${editor.getValue()}
@@ -62,4 +80,16 @@ class CodeBlock extends React.Component {
   
     }
   }
-  export default CodeBlock;
+
+  function Example (props){
+    
+      return(
+        <div className="container-fuild">
+          <h1>{props.title}</h1>
+          <p>{props.desc}</p>
+          <CodeBlock value ={props.children} />
+        </div>
+      );
+    }
+
+  export default Example;
