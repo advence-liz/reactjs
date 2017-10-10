@@ -14,7 +14,7 @@ class CodeBlock extends React.Component {
     //   this.state = {
     //     value: this.props.value
     //   };
-    this.handleChange = this.handleChange.bind(this);
+    // this.handleChange = this.handleChange.bind(this);
   }
   handleChange(event) {
     this.setState({ value: event.target.value });
@@ -86,14 +86,18 @@ class CodeBlock extends React.Component {
 }
 
 class Example extends React.Component {
-  
+
   componentDidMount() {
-    this.ele.firstChild.className="markdown-body";
+    this.ele.firstChild.className = "markdown-body";
   }
   render() {
+    let arr = this.props.desc.split(/\n/);
+    arr = arr.map(function (value) {
+      return value.trim();
+    });
     return (
       <div className="container-fuild" ref={(ele) => { this.ele = ele; }}>
-        <Markdown>{this.props.desc}</Markdown>
+        <Markdown>{arr.join('\n')}</Markdown>
         <CodeBlock value={this.props.children} />
       </div>
     )
