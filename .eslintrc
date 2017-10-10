@@ -1,6 +1,15 @@
 {
-     "extends": "docave",
-     "rules": {
-         "no-unused-vars":"off"
-     }
+    "extends": "docave",
+    "rules": {
+        "no-unused-vars": "off",
+        "react/jsx-no-bind":["error",{
+            "ignoreRefs": true,
+            "allowArrowFunctions": false,
+            "allowBind": false
+          }]
+       
+    },
+    "globals": {
+        "CodeMirror": false
+    }
 }

@@ -1,16 +1,19 @@
 import React from 'react';
 import ReactDOM, { render } from 'react-dom';
 // import Remarkable from 'remarkable';
-// import Markdown from 'react-remarkable';
+ import Markdown from 'react-remarkable';
 // const remarkable = new Remarkable();
 import Example from './component/CodeBlock';
 
 ReactDOM.render(
-  <Example title={`Demo`}
-  desc={`First DEMO`}
-  >
-  {`
-  <section class="bs-example">
+ <Example
+ desc={`
+ ## title
+ > Frist demo
+ `}
+ >
+ {`
+ <section class="bs-example">
   <div class="message-bar message-bar--error">
       <span class="icon fi-page-circle-warning-a"></span>
       <span>Errors have occured on this <a href="#">page</a>.</span>
@@ -25,10 +28,8 @@ ReactDOM.render(
       <span>Errors have occured on this <a href="#">page</a>.</span>
   </div>
 </section>
-            
-  `}
-  </Example>
+ `}
+ </Example>
  ,
   document.getElementById('root')
 );
-
