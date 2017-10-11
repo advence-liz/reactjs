@@ -50,7 +50,7 @@ ReactDOM.render(
           <h3>panel--preview</h3>
           <div class="panel panel--preview">
             <div class="panel__heading">
-              panel__heading对对对
+              panel__heading对对对ddddddd
             </div>
             <div class="panel__content">
               panel__c4dsdsdsontent ...............
