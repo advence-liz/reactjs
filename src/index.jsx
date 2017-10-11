@@ -7,7 +7,7 @@ import Example from './component/CodeBlock';
 
 ReactDOM.render(
 <div className="main">
-    <h1>样式DEMO</h1>
+    <h1>样式DEddMO</h1>
     <hr/>
     <Example 
     desc={`
