@@ -33,7 +33,7 @@ ReactDOM.render(
           </div>
           <div class="message-bar">
             <span class="red-star">*</span>
-            <span>Errors have occured on this <a href="#">page</a>.</span>
+            <span>Errors have occured onssss this <a href="#">page</a>.</span>
           </div>
         </section>
     `}
