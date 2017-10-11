@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM, { render } from 'react-dom';
-// import Remarkable from 'remarkable';dddddddddddddd
+// import Remarkable from 'remarkable';ddddddd的点点滴滴多多多多多ddddddd
  import Markdown from 'react-remarkable';
 // const remarkable = new Remarkable();
 import Example from './component/CodeBlock';
