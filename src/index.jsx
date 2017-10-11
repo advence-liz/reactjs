@@ -41,7 +41,7 @@ ReactDOM.render(
     <Example
     desc={`
     ## Panel
-    > description you can use markdown sytax
+    > description yoddu can use markdown sytax
     `}
     >
     {`
