@@ -1,21 +1,18 @@
 import React from 'react';
 import ReactDOM, { render } from 'react-dom';
-// import Remarkable from 'remarkable';
- import Markdown from 'react-remarkable';
-// const remarkable = new Remarkable();
 import Example from './component/CodeBlock';
 
 ReactDOM.render(
-<div className="main">
+  <div className="main">
     <h1>样式DEMO</h1>
-    <hr/>
-    <Example 
-    desc={`
+    <hr />
+    <Example
+      desc={`
     ## MessageBar
     > messagebar 目前有三种 error,warning,info 可以直接修改又侧预览效果
-    `} 
+    `}
     >
-    {`
+      {`
     <section class="bs-example" >
           <div class="message-bar message-bar--error">
             <span class="icon fi-page-circle-warning-a"></span>
@@ -39,12 +36,12 @@ ReactDOM.render(
     `}
     </Example>
     <Example
-    desc={`
+      desc={`
     ## Panel
     > description you can use markdown sytax
     `}
     >
-    {`
+      {`
     <section class="bs-example">
           <p>预计会有多种panel preview 只是其中一种</p>
           <h3>panel--preview</h3>
@@ -61,12 +58,12 @@ ReactDOM.render(
     `}
     </Example>
     <Example
-    desc={`
+      desc={`
     ## Action-Bar
     > description you can use markdown sytax
     `}
     >
-    {`
+      {`
     <section class="bs-example">
         <div class="action-bar">
             <div class="action-bar__info">
@@ -81,12 +78,12 @@ ReactDOM.render(
     `}
     </Example>
     <Example
-    desc={`
+      desc={`
     ## Function Description
     > description you can use markdown sytax
     `}
     >
-    {`
+      {`
     <section class="bs-example">
           <div class="feature-desc">
             <span class="feature-desc__icon common-img img-32 img-docave-reports"></span>
@@ -97,12 +94,12 @@ ReactDOM.render(
     `}
     </Example>
     <Example
-    desc={`
+      desc={`
     ## Summary Table
     > description you can use markdown sytax
     `}
     >
-    {`
+      {`
     <section class="bs-example">
         <div class="summary-table container-fluid">
             <div class="row summary-table__head">
@@ -125,12 +122,12 @@ ReactDOM.render(
     `}
     </Example>
     <Example
-    desc={`
+      desc={`
     ## Button
     > description you can use markdown sytax
     `}
     >
-    {`
+      {`
     <section class="bs-example">
                     <p>button 样式限定</p>
                     <h3>button</h3>
@@ -146,7 +143,7 @@ ReactDOM.render(
     </section>
     `}
     </Example>
-</div>
- ,
+  </div>
+  ,
   document.getElementById('root')
 );
