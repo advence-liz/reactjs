@@ -1,6 +1,4 @@
 import React from 'react';
-// require("prop-types");
-//require("babel-polyfill");
 import ReactDOM, { render } from 'react-dom';
 import version,{log} from './log.js';
 log();
