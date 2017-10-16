@@ -7,7 +7,7 @@ ReactDOM.render(
     <h1>样式DEMO</h1>
     <hr />
     <Example
-      desc={`
+
     ## MessageBar
     > messagebar 目前有三种 error,warning,info 可以直接修改又侧预览效果
     `}
@@ -30,7 +30,7 @@ ReactDOM.render(
           </div>
           <div class="message-bar">
             <span class="red-star">*</span>
-            <span>Errors have occured on this <a href="#">page</a>.</span>
+            <span>Errors have occured onssss this <a href="#">page</a>.</span>
           </div>
         </section>
     `}
@@ -38,7 +38,7 @@ ReactDOM.render(
     <Example
       desc={`
     ## Panel
-    > description you can use markdown sytax
+    > description yoddu can use markdown sytax
     `}
     >
       {`
@@ -47,7 +47,7 @@ ReactDOM.render(
           <h3>panel--preview</h3>
           <div class="panel panel--preview">
             <div class="panel__heading">
-              panel__heading
+              panel__heading对对对dddddddaaaaa
             </div>
             <div class="panel__content">
               panel__c4dsdsdsontent ...............
