@@ -22,10 +22,10 @@ module.exports = {
                 use: [
                     {
                         loader: 'babel-loader',
-                        options: {
-                            presets: ['es2015', 'react', 'stage-2']
+                        // options: {
+                        //     presets: ['es2015', 'react', 'stage-2']
 
-                        }
+                        // }
                     }
 
                 ]
