@@ -1,14 +1,24 @@
 import React from 'react';
 import ReactDOM, { render } from 'react-dom';
-import version,{log} from './log.js';
-log();
-console.log(version);
-render((
-  <h1>Hello, world!!</h1>
-), document.getElementById('root'));
-
+import Tree ,{Node} from './component/tree';
+let node = new Node();
+node.children.push(new Node());
+node.children.push(new Node());
+node.children.push(new Node());
+node.children.push(new Node());
+node.children.push(new Node());
+let childNode = new Node();
+childNode.children.push(new Node());
+childNode.children.push(new Node());
+childNode.children.push(new Node());
+childNode.children.push(new Node());
+childNode.children.push(new Node());
+node.children.push(childNode);
 ReactDOM.render((
-  <h1>Hello, world!!</h1>
+  <div>
+     <h1>Hello, world!!</h1>
+     <Tree root={node} />
+  </div>
+ 
 ), document.getElementById('root'));
 
-export { log};
