@@ -1,6 +1,6 @@
 import React from 'react';
 /**
- * 每个节点都是一个tree
+ * 每个节点都是一个tree 
  */
 class Node {
     constructor() {
@@ -18,7 +18,10 @@ class Node {
     }
 }
 Node.index = 0;
-
+/**
+ * Node render 和 FancyNode 组成递归调用
+ * @param {*} children 
+ */
 function FancyNode(children) {
     children = children.map((child) => {
         return child.render();
@@ -27,7 +30,10 @@ function FancyNode(children) {
         <ul key={`ul${FancyNode.index++}`}>
             {children}
         </ul>
-    )
+    );
+    /**
+     * createElement()
+     */
 }
 FancyNode.index = 0;
 
