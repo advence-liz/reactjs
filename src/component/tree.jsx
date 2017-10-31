@@ -8,6 +8,9 @@ class Node {
         this.parent = null;
         this.children = [];
     }
+    /**
+     * 这个递归反向感觉玩不通，反向相当于过个入口
+     */
     render() {
         if (this.children.length) {
             return FancyNode(this.children);
@@ -31,9 +34,10 @@ function FancyNode(children) {
             {children}
         </ul>
     );
-    /**
-     * createElement()
-     */
+    // var reactElement = React.createElement(type, props, children);
+    // //等价于下面两行：
+    // var div = React.createFactory('div');
+    // var reactDivElement = div(props, children);
 }
 FancyNode.index = 0;
 
