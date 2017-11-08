@@ -12,5 +12,6 @@
 
  ## REF
 - [React 顶层API](http://www.cnblogs.com/vajoy/p/4631292.html)
+- [React CN](https://doc.react-china.org/docs/hello-world.html)
 - [react-router](https://reacttraining.com/react-router/web/example/basic)
 - [React - Basic Theoretical Concepts](https://github.com/reactjs/react-basic/blob/master/README.md)
