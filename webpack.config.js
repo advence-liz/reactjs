@@ -53,7 +53,10 @@ module.exports = {
             favicon:"template/favicon.ico"
         }),
     ],
-    
+    externals: {
+        'react': ' window.React',
+        'react-dom': ' window.ReactDOM',
+    },
     devServer: {
         contentBase: path.join(__dirname, "build"),
         compress: true,
