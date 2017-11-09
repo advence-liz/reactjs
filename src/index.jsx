@@ -1,14 +1,6 @@
 import React from 'react';
 import ReactDOM, { render } from 'react-dom';
-import version,{log} from './log.js';
-log();
-console.log(version);
-render((
-  <h1>Hello, world!!</h1>
-), document.getElementById('root'));
-
+import Datagrid from './component/Datagrid';
 ReactDOM.render((
-  <h1>Hello, world!!</h1>
+  <Datagrid />
 ), document.getElementById('root'));
-
-export { log};
