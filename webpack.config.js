@@ -6,7 +6,7 @@ var path = require("path"),
 
 module.exports = {
     entry: {
-       index:'./src'
+        index: './src'
     },
     output: {
         path: path.resolve(__dirname, 'build'),
@@ -15,7 +15,7 @@ module.exports = {
 
     module: {
         rules: [
-            
+
             {
                 test: /\.(js|jsx)$/,
                 exclude: /(node_modules|bower_components)/,
@@ -41,7 +41,7 @@ module.exports = {
         // (does not apply to resolving to loaders)
         modules: [
             "node_modules",
-            path.resolve(__dirname, "node_modules")
+            "docave_modules"
         ],
         // directories where to look for modules
         extensions: [".js", ".json", ".jsx", ".css"],
@@ -50,7 +50,7 @@ module.exports = {
         new HtmlWebpackPlugin({
             filename: 'index.html',
             template: 'template/_layout.html',
-            favicon:"template/favicon.ico"
+            favicon: "template/favicon.ico"
         }),
     ],
     externals: {
