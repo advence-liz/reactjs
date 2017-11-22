@@ -26,9 +26,10 @@ class Clock extends React.Component {
     this.setState({
       date: new Date()
     });
-    this.setState((prevState, props) => ({
-      title: `${prevState.time++}${props.title}`
-    }));
+    this.setState(function (prevState, props) {
+
+      return { title: `${prevState.time++}${props.title}` }
+    });
   }
   shouldComponentUpdate(nextProps, nextState) {
     if (nextState.time % 2) {
