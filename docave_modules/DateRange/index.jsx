@@ -1,25 +1,37 @@
+// public enum JobDateRangeType
+// {
+//     [Description("All Jobs")]
+//     AllJobs = 0,
+//     [Description("Last 7 Days")]
+//     Last7Days = 1,
+//     [Description("Last 14 Days")]
+//     Last14Days = 2,
+//     [Description("Last 30 Days")]
+//     Last30Days = 3,
+//     [Description("Customize")]
+//     Customize = 4,
+//     [Description("Last 24 Hours")]
+//     Last24Hours = 5,
+// }
 const DateRangeSources = [{
     name: 'All Jobs',
     value: 0
 }, {
-    name: 'Last 24 Hours',
+    name: 'Last 7 Hours',
     value: 1
 }, {
-    name: 'Last 7 Days',
+    name: 'Last 14 Days',
     value: 2
 }, {
-    name: 'Last 14 Days',
-    value: 3
-}, {
-    name: 'Last 30 Days',
-    value: 4
-}, {
-    name: 'Last 30 Days',
+    name: 'Last 24 Days',
     value: 5
+}, {
+    name: 'Last 30 Days',
+    value: 3
 },
 {
     name: 'Customize',
-    value: 6
+    value: 4
 }];
 
 export default class DateRange extends React.Component {
@@ -29,6 +41,10 @@ export default class DateRange extends React.Component {
             selectedTimeZone: $$.I18N.timezones[1],
             disabled: true
         }
+        this.DateRangeCustomize = false;
+        this.RangeType = null;
+        
+
         this.selectionChanged = this.selectionChanged.bind(this);
         this.dateChanged = this.dateChanged.bind(this);
         this.submit = this.submit.bind(this);
@@ -36,12 +52,15 @@ export default class DateRange extends React.Component {
 
     }
     selectionChanged(e, args) {
-        let newValue = args.newValue;
-        if (newValue.index === 6) {
-            this.setState({ disabled: false })
+        let current = args.newValue.item;
+        if (current.name === "Customize") {
+            this.setState({ disabled: false });
+            this.DateRangeCustomize=true;
         } else {
-           !this.state.disabled&& this.setState({ disabled: true });
+            this.setState({ disabled: true });
+            this.DateRangeCustomize=false;
         }
+        this.RangeType = current.value;
     }
     dateChanged(e, args) {
         console.table(args);
