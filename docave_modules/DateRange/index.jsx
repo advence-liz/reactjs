@@ -1,16 +1,15 @@
-
 const DateRangeTypes = [{
     name: 'All Jobs',
     value: 0
 }, {
-    name: 'Last 7 Hours',
+    name: 'Last 24 Hours',
+    value: 5
+}, {
+    name: 'Last 7 Days',
     value: 1
 }, {
     name: 'Last 14 Days',
     value: 2
-}, {
-    name: 'Last 24 Days',
-    value: 5
 }, {
     name: 'Last 30 Days',
     value: 3
@@ -49,7 +48,7 @@ export default class DateRange extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            selectedTimeZone: $$.I18N.timezones[0],
+            selectedTimeZone: this.getSelectedTimeZone(),
             disabled: true
         }
         this.status = {
@@ -61,31 +60,51 @@ export default class DateRange extends React.Component {
 
         this.selectionChanged = this.selectionChanged.bind(this);
         this.dateChanged = this.dateChanged.bind(this);
+        this.submit = this.submit.bind(this);
         this.cancel = this.cancel.bind(this);
     }
     selectionChanged(e, args) {
         let current = args.newValue.item;
         if (current.name === "Customize") {
             this.setState({ disabled: false });
-            // this.status.DateRangeCustomize = true;
         } else {
             this.setState({ disabled: true });
-            // this.status.DateRangeCustomize = false;
         }
         this.status.RangeType = current.value;
     }
     dateChanged(e, args) {
-        let item = args.newValue;
-        let targetOffset = parseInt(item.timezone.baseUtcOffset.slice(0, 3));
-        this.status.FromTime = convertDate2Ticks(item.start, targetOffset);
-        this.status.ToTime = convertDate2Ticks(item.end, targetOffset);
+        try{
+            let item = args.newValue;
+            let targetOffset = parseInt(item.timezone.baseUtcOffset.slice(0, 3));
+            this.status.FromTime = convertDate2Ticks(item.start, targetOffset);
+            this.status.ToTime = convertDate2Ticks(item.end, targetOffset);
+        }catch(e){
 
+        }
+       
     }
-
+    submit() {
+        $(document.body).trigger("mousedown");
+        this.props.submit(this.status);
+    }
     cancel() {
         this.setState({ selectedTimeZone: $$.I18N.timezones[0] });
         //close popupp
         $(document.body).trigger("mousedown");
+    }
+    getSelectedTimeZone() {
+        let now = new Date();
+        let timeReg = /[\w\W]+\(([\w\W]+)\)/;
+        let timeString = now.toTimeString().match(timeReg)[1];
+        for (let i = 0; i < $$.I18N.timezones.length; i++) {
+            let currentTimeZone = $$.I18N.timezones[i];
+            if (currentTimeZone.id === timeString) {
+                return currentTimeZone;
+            }
+        }
+        return $$.I18N.timezones[0];
+
+
     }
     render() {
         let combobox = "data-range--combobox",
@@ -126,7 +145,7 @@ export default class DateRange extends React.Component {
                     />
                 </div>
                 <div className="date-range--bottom" style={dateRangeBottomStyle}>
-                    <button type="button" className="button button-default" onClick={this.props.submit.bind(null, this.status)}>OK</button>
+                    <button type="button" className="button button-default" onClick={this.submit}>OK</button>
                     <button type="button" className="button button-link button-blue button-underline" onClick={this.cancel}>Cancel</button>
                 </div>
             </div>
