@@ -7,6 +7,7 @@
 - npm start  启动webpack dev server
 
 ## REF
+- [DateFormat](http://www.bitscn.com/school/Javascript/201610/751698.html)
 - [react-router](https://reacttraining.com/react-router/web/example/basic)
 - [eslint-plugin-compat](https://github.com/amilajack/eslint-plugin-compat)
 - [bowserlist](https://github.com/ai/browserslist)
