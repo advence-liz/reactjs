@@ -35,20 +35,31 @@ const TickOffset = 621355968000000000;
 /**
  * 
  * @param {Date} date Date 浏览器端Date对象
- * @param {Number} targetOffset 目标偏移量 -12 <= targetOffset <= +12
+ * @param {Number} targetTimezone 目标时区 -12 <= targetTimezone <= +12
+ * @description
+ * 当 times 为0 时  UTC 时间为"Thu, 01 Jan 1970 00:00:00 GMT"
+ *                 +8 时间为 "Thu Jan 01 1970 08:00:00 GMT+0800 (China Standard Time)"
+ * UTC.getTimes + cur.getTimezoneOffset = cur.getTimes  //这里成立的条件是 UTC 和 cur 时同一时间 比如都 8点
+ * cur.gitTimes - cur.getTimezoneOffset 转为UTC  然后加上 target.getTimezoneoffset    即为tatget times   时区越高 同一时间点 times 越小
+ * 下面代码中+ currentTimezone - tragetTimezone 是因为 Timezone 和 TimezoneOffset 正负是相反的
+ * 正常存入后端cur.getTimes 就OK了，前端回显直接通过 times 转为当前Date 对象
  */
-function convertDate2Ticks(date, targetOffset) {
-    let currentTimeZone = -date.getTimezoneOffset() / 60;
+function convertDate2Ticks(date, targetTimezone) {
+    let currentTimezone = -date.getTimezoneOffset() / 60;
     let times, ticks
-    times = date.getTime() + (currentTimeZone + targetOffset) * 60 * 60 * 1000;
+    times = date.getTime() + (currentTimezone - targetTimezone) * 60 * 60 * 1000;
     ticks = times * 10000 + TickOffset;
     return ticks;
 }
-// utc 0  +8 8 +9 9
+/**
+ * 将ticks 转为目标日期对象
+ * @param {Ticks} ticks 
+ * Date 方法可以直接将 times 转为当前时区的Date 对象，但是目标时区可能跟当前时区不一样所以需要转化一下
+ */
 function convertTicks2Date(ticks) {
-    let UTCTimes = (ticks - TickOffset) / 10000;
+    let times = (ticks - TickOffset) / 10000;
     let timezoneOffset = $$.I18N.currentOffset ?new Date().getTimezoneOffset()-$$.I18N.currentOffset :0;
-    let currentTimes = UTCTimes + timezoneOffset *60 *1000;
+    let currentTimes = times + timezoneOffset *60 *1000;
     return new Date(currentTimes);
 
 }
