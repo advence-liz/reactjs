@@ -40,8 +40,9 @@ module.exports = {
         // options for resolving module requests
         // (does not apply to resolving to loaders)
         modules: [
-            "node_modules",
-            "docave_modules"
+            "Tools",
+            "docave_modules",
+            "node_modules"
         ],
         // directories where to look for modules
         extensions: [".js", ".json", ".jsx", ".css"],
@@ -57,6 +58,7 @@ module.exports = {
         'react': ' window.React',
         'react-dom': ' window.ReactDOM',
     },
+  //  externals:/^react/,
     devServer: {
         contentBase: path.join(__dirname, "build"),
         compress: true,

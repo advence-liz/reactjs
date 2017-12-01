@@ -31,4 +31,8 @@ class Root extends React.Component {
 ReactDOM.render((
   <Root />
 ), document.getElementById('root'));
-
+console.log(process);
+console.log(global);
+console.log(__dirname);
+console.log(__filename);
+console.log(module);
