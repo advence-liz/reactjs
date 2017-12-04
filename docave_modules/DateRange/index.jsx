@@ -188,7 +188,7 @@ export default class DateRange extends React.Component {
             labelStyle = {
                 margin: '5px 0px',
                 display: 'block',
-                color: this.state.selectedItem.name === "Customize" ? null : "#AAB3BE"
+                color: this.state.selectedItem.index === this.currentDateRangeTypes.length-1 ? null : "#AAB3BE"
             }
 
         return (
