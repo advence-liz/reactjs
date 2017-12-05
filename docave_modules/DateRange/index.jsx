@@ -1,39 +1,42 @@
-const DateRangeTypes = ()=>[{
-    name: 'All Jobs',
-    value: 0
-}, {
-    name: 'Last 24 Hours',
-    value: 5
-}, {
-    name: 'Last 7 Days',
-    value: 1
-}, {
-    name: 'Last 14 Days',
-    value: 2
-}, {
-    name: 'Last 30 Days',
-    value: 3
-},
-{
-    name: 'Customize',
-    value: 4
-}];
-const ScheduleDateRangeTypes =()=> [{
-    name: 'Next 7 Days',
-    value: 0
-}, {
-    name: 'Next 14 Days',
-    value: 1
-}, {
-    name: 'Next 30 Days',
-    value: 2
-}, {
-    name: 'Customize',
-    value: 3
-}];
+const DateRangeTypes = () =>
+    [{
+        name: 'All Jobs',
+        value: 0
+    }, {
+        name: 'Last 24 Hours',
+        value: 5
+    }, {
+        name: 'Last 7 Days',
+        value: 1
+    }, {
+        name: 'Last 14 Days',
+        value: 2
+    }, {
+        name: 'Last 30 Days',
+        value: 3
+    },
+    {
+        name: 'Customize',
+        value: 4
+    }];
+const ScheduleDateRangeTypes = () =>
+    [{
+        name: 'Next 7 Days',
+        value: 0
+    }, {
+        name: 'Next 14 Days',
+        value: 1
+    }, {
+        name: 'Next 30 Days',
+        value: 2
+    }, {
+        name: 'Customize',
+        value: 3
+    }];
+    var I18N ={get:function(){}}    
 const TickOffset = 621355968000000000;
 /**
- * 
+ * Ticks = Times* 10000 + TickOffset
  * @param {Date} date Date 浏览器端Date对象
  * @param {Number} targetTimezone 目标时区 -12 <= targetTimezone <= +12
  * @description
@@ -54,12 +57,16 @@ function convertDate2Ticks(date, targetTimezone) {
 /**
  * 将ticks 转为目标日期对象
  * @param {Ticks} ticks 
- * Date 方法可以直接将 times 转为当前时区的Date 对象，但是目标时区可能跟当前时区不一样所以需要转化一下
+ * @desc Date 方法可以直接将 times 转为当前时区的Date 对象，但是目标时区可能跟当前时区不一样所以需要转化一下
+ *  当前时区的times 减去目标时区 偏移的小时 比如 +8 到 -5 就应该减 13 小时
+ *  下面俩句相当于 current 转 UTC  TUC转 target
+ *  let timezoneOffset = $$.I18N.currentOffset ? $$.I18N.currentOffset - new Date().getTimezoneOffset() : 0;
+ *  let currentTimes = times - timezoneOffset * 60 * 1000;
  */
 function convertTicks2Date(ticks) {
     let times = (ticks - TickOffset) / 10000;
-    let timezoneOffset = $$.I18N.currentOffset ?new Date().getTimezoneOffset()-$$.I18N.currentOffset :0;
-    let currentTimes = times + timezoneOffset *60 *1000;
+    let timezoneOffset = $$.I18N.currentOffset ? $$.I18N.currentOffset - new Date().getTimezoneOffset() : 0;
+    let currentTimes = times - timezoneOffset * 60 * 1000;
     return new Date(currentTimes);
 
 }
@@ -69,7 +76,7 @@ export default class DateRange extends React.Component {
         super(props);
         this.currentDateRangeTypes = this.props.schedule ? ScheduleDateRangeTypes() : DateRangeTypes();
         this.state = {
-            selectedTimeZone: this.getSelectedTimeZone(),
+            selectedTimeZone: $$.I18N.currentTimeZone || this.getSelectedTimeZone(),
             disabled: true,
             selectedItem: this.currentDateRangeTypes[0],
             startDate: null,
@@ -111,7 +118,7 @@ export default class DateRange extends React.Component {
     }
     selectionChanged(e, args) {
         let current = args.newValue;
-        if (current.index ==this.currentDateRangeTypes.length-1) {
+        if (current.index == this.currentDateRangeTypes.length - 1) {
             this.setState({ disabled: false });
         } else {
             this.setState({ disabled: true });
@@ -122,7 +129,7 @@ export default class DateRange extends React.Component {
     dateChanged(e, args) {
         try {
             let item = args.newValue;
-            let targetOffset = parseInt(item.timezone.baseUtcOffset.slice(0, 3));
+            let targetOffset = ~~item.timezone.baseUtcOffset.slice(0, 3);
             this.status.FromTime = convertDate2Ticks(item.start, targetOffset);
             this.status.ToTime = convertDate2Ticks(item.end, targetOffset);
             this.setState({ startDate: item.start, endDate: item.end });
@@ -154,7 +161,7 @@ export default class DateRange extends React.Component {
         try {
             let now = new Date();
             let timeReg = /[\w\W]+\(([\w\W]+)\)/;
-            let timeString = $$.I18N.currentTimeZone.id ||now.toTimeString().match(timeReg)[1];
+            let timeString = $$.I18N.currentTimeZone.id || now.toTimeString().match(timeReg)[1];
             for (let i = 0; i < $$.I18N.timezones.length; i++) {
                 let currentTimeZone = $$.I18N.timezones[i];
                 if (currentTimeZone.id === timeString) {
@@ -164,7 +171,7 @@ export default class DateRange extends React.Component {
         } catch (e) {
 
         }
-       
+
         return $$.I18N.timezones[0];
 
     }
@@ -172,7 +179,7 @@ export default class DateRange extends React.Component {
         let combobox = "data-range--combobox",
             rangePicker = "data-range--range-picker",
             dateRangeStyle = {
-                width: 320,
+                width: 350,
                 minHeight: 130,
                 border: "solid 1px #ababab"
             },
@@ -188,7 +195,7 @@ export default class DateRange extends React.Component {
             labelStyle = {
                 margin: '5px 0px',
                 display: 'block',
-                color: this.state.selectedItem.index === this.currentDateRangeTypes.length-1 ? null : "#AAB3BE"
+                color: this.state.selectedItem.index === this.currentDateRangeTypes.length - 1 ? null : "#AAB3BE"
             }
 
         return (
@@ -196,7 +203,7 @@ export default class DateRange extends React.Component {
                 <div className="date-range--top" style={dateRangeTopStyle}>
                     <div className="row">
                         <div className="col-md-3" style={{ paddingRight: 0, width: 'auto' }}>
-                            <label htmlFor={combobox}>Range:</label>
+                            <label htmlFor={combobox}>{I18N.get("Common.Gui", "Gui.Common_Range:") || "Range"}</label>
                         </div>
                         <div className="col-md-6">
                             <R.Combobox
@@ -212,7 +219,7 @@ export default class DateRange extends React.Component {
                     </div>
 
 
-                    <label htmlFor={rangePicker} style={labelStyle}>job(s) start during:</label>
+                    <label htmlFor={rangePicker} style={labelStyle}>{I18N.get("Common.Gui", "Gui.Common_Job(s) start during:") || "Job(s) start during:"}</label>
                     <R.Rangepicker
                         hasTimePicker
                         hasTimeZone
@@ -222,11 +229,12 @@ export default class DateRange extends React.Component {
                         selectedStartDate={this.state.startDate}
                         selectedEndDate={this.state.endDate}
                         dateTimeFormat="MM-dd-yy h:mm:ss"
+                        width={320}
                     />
                 </div>
                 <div className="date-range--bottom" style={dateRangeBottomStyle}>
-                    <button type="button" className="button button-default" onClick={this.submit} style={{ width: 65 }}>OK</button>
-                    <button type="button" className="button button-link button-blue button-underline" onClick={this.cancel}>Cancel</button>
+                    <button type="button" className="button button-default" onClick={this.submit} style={{ width: 65 }}>{I18N.get("Common.Gui", "Gui.Common_OK") || "OK"}</button>
+                    <button type="button" className="button button-link button-blue button-underline" onClick={this.cancel}>{I18N.get("Common.Gui", "Gui.Common_Cancel") || "Cancel"}</button>
                 </div>
             </div>
         )

@@ -39,3 +39,11 @@ console.log(module);
 if(PRODUCTION){
   console.log("eeeeeeeeeeeee");
 }
+try{
+  throw("eeee");
+}catch(e){
+   
+  console.error(`${__dirname}${__filename}`);
+  console.console(module.id);
+  
+}
