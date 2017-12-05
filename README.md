@@ -16,3 +16,19 @@
 2017-12-05 22:09:09 (UTC-05:00) Eastern Time (US & Canada)
 20 26
 +8 
+
+var tickOffset =621355968000000000;
+
+var times = new Date().getTime()
+1512481403839
+
+tickOffset+times
+621357480481403800
+
+tickOffset+times -tickOffset ==times
+false
+
+tickOffset+times -tickOffset 
+1512481403776
+tickOffset+times -tickOffset  -times
+-63

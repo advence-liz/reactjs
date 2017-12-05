@@ -7,7 +7,7 @@ class Root extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      FromTime: 0,
+      FromTime: 636480768711190000,
       ToTime: 0,
       RangeType: 0
     };
@@ -20,7 +20,7 @@ class Root extends React.Component {
   render() {
     let dateRangeFilter = Object.create(null);
     Object.defineProperties(dateRangeFilter, {
-      FromTime: { get: () => { return this.state.FromTime; } },
+      FromTime: {value:this.state.FromTime,enumerable:true,writable:true,configurable:true},
       ToTime: { get: () => { return this.state.ToTime; } },
       RangeType: { get: () => { return this.state.RangeType; } }
     })
@@ -31,19 +31,19 @@ class Root extends React.Component {
 ReactDOM.render((
   <Root />
 ), document.getElementById('root'));
-console.log(process);
-console.log(global);
-console.log(__dirname);
-console.log(__filename);
-console.log(module);
-if(PRODUCTION){
-  console.log("eeeeeeeeeeeee");
-}
-try{
-  throw("eeee");
-}catch(e){
+// console.log(process);
+// console.log(global);
+// console.log(__dirname);
+// console.log(__filename);
+// console.log(module);
+// if(PRODUCTION){
+//   console.log("eeeeeeeeeeeee");
+// }
+// try{
+//   throw("eeee");
+// }catch(e){
    
-  console.error(`${__dirname}${__filename}`);
-  console.console(module.id);
+//   console.error(`${__dirname}${__filename}`);
+//   console.console(module.id);
   
-}
+// }

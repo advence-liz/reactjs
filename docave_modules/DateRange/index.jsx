@@ -36,15 +36,17 @@ const ScheduleDateRangeTypes = () =>
     var I18N ={get:function(){}}    
 const TickOffset = 621355968000000000;
 /**
- * Ticks = Times* 10000 + TickOffset
+ * 此方法以date(精确到秒那种）为基准 计算得出目标时区 相同date 的ticks 数 
+ * date 相同的话 时区越大 ticks 越小
  * @param {Date} date Date 浏览器端Date对象
  * @param {Number} targetTimezone 目标时区 -12 <= targetTimezone <= +12
  * @description
+ * Ticks = Times* 10000 + TickOffset
  * 当 times 为0 时  UTC 时间为"Thu, 01 Jan 1970 00:00:00 GMT"
  *                 +8 时间为 "Thu Jan 01 1970 08:00:00 GMT+0800 (China Standard Time)"
  * UTC.getTimes + cur.getTimezoneOffset = cur.getTimes  //这里成立的条件是 UTC 和 cur 时同一时间 比如都 8点
- * cur.gitTimes - cur.getTimezoneOffset 转为UTC  然后加上 target.getTimezoneoffset    即为tatget times   时区越高 同一时间点 times 越小
  * 下面代码中+ currentTimezone - tragetTimezone 是因为 Timezone 和 TimezoneOffset 正负是相反的
+ * UTC.getTimes=cur.getTimes+cur.timezone*n //n=60*60*1000 为常量
  * 正常存入后端cur.getTimes 就OK了，前端回显直接通过 times 转为当前Date 对象
  */
 function convertDate2Ticks(date, targetTimezone) {
@@ -55,17 +57,21 @@ function convertDate2Ticks(date, targetTimezone) {
     return ticks;
 }
 /**
- * 将ticks 转为目标日期对象
- * @param {Ticks} ticks 
+ * 将ticks 转换为目标date
+ * ticks 相同的话 目标时区越大 date 越大 浏览器的Date 构造函数 就会将 Times 转为 当前时区 date 对
+ * 但是如果 当前时区不等于目标时区 date 就要加减 时区偏移差的小时数 目标大于 当前时区 则加 
+ * 但是由于使用 new Date（times） 生成date 对象 所以通过 加上 偏差对应的tiems 数
+ * @param {Number} ticks C# ticks
+ * @param {Number} targetTimezoneOffset  targetTimezoneOffset
  * @desc Date 方法可以直接将 times 转为当前时区的Date 对象，但是目标时区可能跟当前时区不一样所以需要转化一下
  *  当前时区的times 减去目标时区 偏移的小时 比如 +8 到 -5 就应该减 13 小时
  *  下面俩句相当于 current 转 UTC  TUC转 target
  *  let timezoneOffset = $$.I18N.currentOffset ? $$.I18N.currentOffset - new Date().getTimezoneOffset() : 0;
  *  let currentTimes = times - timezoneOffset * 60 * 1000;
  */
-function convertTicks2Date(ticks) {
+function convertTicks2Date(ticks,targetTimezoneOffset=new Date().getTimezoneOffset()) {
     let times = (ticks - TickOffset) / 10000;
-    let timezoneOffset = $$.I18N.currentOffset ? $$.I18N.currentOffset - new Date().getTimezoneOffset() : 0;
+    let timezoneOffset = targetTimezoneOffset - new Date().getTimezoneOffset();
     let currentTimes = times - timezoneOffset * 60 * 1000;
     return new Date(currentTimes);
 
@@ -108,8 +114,8 @@ export default class DateRange extends React.Component {
         try {
             Object.assign(this.status, this.props.dateRangeFilter);
             if (!this.status.FromTime) return;
-            this.state.startDate = new Date(convertTicks2Date(this.status.FromTime));
-            this.state.endDate = new Date(convertTicks2Date(this.status.ToTime));
+            this.state.startDate = new Date(convertTicks2Date(this.status.FromTime,$$.I18N.currentOffset));
+            this.state.endDate = new Date(convertTicks2Date(this.status.ToTime,$$.I18N.currentOffset));
 
         } catch (e) {
 
@@ -129,9 +135,9 @@ export default class DateRange extends React.Component {
     dateChanged(e, args) {
         try {
             let item = args.newValue;
-            let targetOffset = ~~item.timezone.baseUtcOffset.slice(0, 3);
-            this.status.FromTime = convertDate2Ticks(item.start, targetOffset);
-            this.status.ToTime = convertDate2Ticks(item.end, targetOffset);
+            let targetTimezone = ~~item.timezone.baseUtcOffset.slice(0, 3);
+            this.status.FromTime = convertDate2Ticks(item.start, targetTimezone);
+            this.status.ToTime = convertDate2Ticks(item.end, targetTimezone);
             this.setState({ startDate: item.start, endDate: item.end });
         } catch (e) {
 
