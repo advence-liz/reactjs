@@ -2,7 +2,7 @@
 const TickOffset = 621355968000000000;
 const CurrentTimezonOffset = new Date().getTimezoneOffset();
 const CurrentTimezone = -CurrentTimezonOffset / 60;
-//60*60*1000 此值定义为常量是有意义，因为 JavaScript 大数运行丢精度下面的表达式转为常量后稳定性提高了好多
+//60*60*1000 此值定义为常量是有意义，因为 JavaScript 大数运算丢精度下面的表达式转为常量后稳定性提高了好很多 
 //times = date.getTime() + (CurrentTimezone - targetTimezone) * HourMillisecond;
 const HourMillisecond = 3600000;
 /**
