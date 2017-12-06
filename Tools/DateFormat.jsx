@@ -67,7 +67,7 @@ function convertTicks2Date(ticks, targetTimezone = CurrentTimezone) {
     return new Date(currentTimes);
 }
 /**
- * Date Format 根据下面链接改的 不想挂在Date 原先上简单封装一下
+ * Date Format 根据下面链接改的 不想挂在Date 原型上简单封装一下
  * http://www.bitscn.com/school/Javascript/201610/751698.html  
  * @param {Date} Date defualt new Date();
  * @example
