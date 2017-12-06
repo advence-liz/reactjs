@@ -87,7 +87,7 @@ export default class DateRange extends React.Component {
         if (current.index == this.currentDateRangeTypes.length - 1) {
             this.setState({ disabled: false });
         } else {
-            this.setState({ disabled: true });
+            this.setState({ disabled: true ,startDate: null, endDate: null });
         }
         this.setState({ selectedItem: current })
         this.status.RangeType = current.value;
