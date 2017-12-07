@@ -1,40 +1,5 @@
 import {convertDate2Ticks,convertTicks2Date} from "DateFormat.jsx";
-const DateRangeTypes = () =>
-    [{
-        name: 'All Jobs',
-        value: 0
-    }, {
-        name: 'Last 24 Hours',
-        value: 5
-    }, {
-        name: 'Last 7 Days',
-        value: 1
-    }, {
-        name: 'Last 14 Days',
-        value: 2
-    }, {
-        name: 'Last 30 Days',
-        value: 3
-    },
-    {
-        name: 'Customize',
-        value: 4
-    }];
-const ScheduleDateRangeTypes = () =>
-    [{
-        name: 'Next 7 Days',
-        value: 0
-    }, {
-        name: 'Next 14 Days',
-        value: 1
-    }, {
-        name: 'Next 30 Days',
-        value: 2
-    }, {
-        name: 'Customize',
-        value: 3
-    }];
-    var I18N ={get:function(){}}    
+import { DateRangeTypes,ScheduleDateRangeTypes,getI18N } from "./I18N"
 
 // <DateRange schedule dateRangeFilter={} />
 export default class DateRange extends React.Component {
@@ -84,7 +49,7 @@ export default class DateRange extends React.Component {
     }
     selectionChanged(e, args) {
         let current = args.newValue;
-        if (current.index == this.currentDateRangeTypes.length - 1) {
+        if (current.index ==this.currentDateRangeTypes.length-1) {
             this.setState({ disabled: false });
         } else {
             this.setState({ disabled: true ,startDate: null, endDate: null });
@@ -95,7 +60,7 @@ export default class DateRange extends React.Component {
     dateChanged(e, args) {
         try {
             let item = args.newValue;
-            let targetTimezone = ~~item.timezone.baseUtcOffset.slice(0, 3);
+            let targetTimezone = parseInt(item.timezone.baseUtcOffset.slice(0, 3));
             this.status.FromTime = convertDate2Ticks(item.start, targetTimezone);
             this.status.ToTime = convertDate2Ticks(item.end, targetTimezone);
             this.setState({ startDate: item.start, endDate: item.end });
@@ -127,7 +92,7 @@ export default class DateRange extends React.Component {
         try {
             let now = new Date();
             let timeReg = /[\w\W]+\(([\w\W]+)\)/;
-            let timeString = $$.I18N.currentTimeZone.id || now.toTimeString().match(timeReg)[1];
+            let timeString = $$.I18N.currentTimeZone.id ||now.toTimeString().match(timeReg)[1];
             for (let i = 0; i < $$.I18N.timezones.length; i++) {
                 let currentTimeZone = $$.I18N.timezones[i];
                 if (currentTimeZone.id === timeString) {
@@ -137,13 +102,14 @@ export default class DateRange extends React.Component {
         } catch (e) {
 
         }
-
+       
         return $$.I18N.timezones[0];
 
     }
     render() {
         let combobox = "data-range--combobox",
             rangePicker = "data-range--range-picker",
+            I18N = getI18N(),
             dateRangeStyle = {
                 width: 350,
                 minHeight: 130,
@@ -161,15 +127,15 @@ export default class DateRange extends React.Component {
             labelStyle = {
                 margin: '5px 0px',
                 display: 'block',
-                color: this.state.selectedItem.index === this.currentDateRangeTypes.length - 1 ? null : "#AAB3BE"
-            }
+                color: this.state.selectedItem.index === this.currentDateRangeTypes.length-1 ? null : "#AAB3BE"
+            };
 
         return (
             <div className="date-range" style={dateRangeStyle}>
                 <div className="date-range--top" style={dateRangeTopStyle}>
                     <div className="row">
                         <div className="col-md-3" style={{ paddingRight: 0, width: 'auto' }}>
-                            <label htmlFor={combobox}>{I18N.get("Common.Gui", "Gui.Common_Range:") || "Range"}</label>
+                            <label htmlFor={combobox}>{I18N.rangeLabel}</label>
                         </div>
                         <div className="col-md-6">
                             <R.Combobox
@@ -185,7 +151,7 @@ export default class DateRange extends React.Component {
                     </div>
 
 
-                    <label htmlFor={rangePicker} style={labelStyle}>{I18N.get("Common.Gui", "Gui.Common_Job(s) start during:") || "Job(s) start during:"}</label>
+                    <label htmlFor={rangePicker} style={labelStyle}>{I18N.duringLabel}</label>
                     <R.Rangepicker
                         hasTimePicker
                         hasTimeZone
@@ -199,8 +165,8 @@ export default class DateRange extends React.Component {
                     />
                 </div>
                 <div className="date-range--bottom" style={dateRangeBottomStyle}>
-                    <button type="button" className="button button-default" onClick={this.submit} style={{ width: 65 }}>{I18N.get("Common.Gui", "Gui.Common_OK") || "OK"}</button>
-                    <button type="button" className="button button-link button-blue button-underline" onClick={this.cancel}>{I18N.get("Common.Gui", "Gui.Common_Cancel") || "Cancel"}</button>
+                    <button type="button" className="button button-default" onClick={this.submit} style={{ width: 65 }}>{I18N.ok}</button>
+                    <button type="button" className="button button-link button-blue button-underline" onClick={this.cancel}>{I18N.cancel}</button>
                 </div>
             </div>
         )
