@@ -1,4 +1,4 @@
-
+require("./main.less");
 function Row(props) {
     let rowStyle ={
         borderTop: `1px solid #ddd`
