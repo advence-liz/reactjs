@@ -31,6 +31,7 @@
     "eslint-config-docave": "0.0.2",
     "eslint-plugin-jsx-a11y": "^5.1.1",
     "eslint-plugin-react": "^7.1.0",
+    "fetch-mock": "^5.13.1",
     "html-webpack-plugin": "^2.8.2",
     "webpack": "^3.5.3",
     "webpack-dev-server": "^2.4.4"

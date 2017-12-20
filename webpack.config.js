@@ -37,9 +37,15 @@ module.exports = {
         // (does not apply to resolving to loaders)
         modules: [
             "Tools",
+            "Common",
             "docave_modules",
             "node_modules"
         ],
+        alias: {
+            Utilities: path.resolve(__dirname, 'JSX/Utilities/'),
+            Services: path.resolve(__dirname, 'JSX/Services/'),
+            Common: path.resolve(__dirname, 'JSX/Components/Common/')
+        },
         // directories where to look for modules
         extensions: [".js", ".json", ".jsx", ".css"],
     },
@@ -55,13 +61,13 @@ module.exports = {
             BROWSER_SUPPORTS_HTML5: true,
             TWO: "1+1",
             "typeof window": JSON.stringify("object")
-          })
+        })
     ],
     externals: {
         'react': ' window.React',
         'react-dom': ' window.ReactDOM',
     },
-  //  externals:/^react/,
+    //  externals:/^react/,
     devServer: {
         contentBase: path.join(__dirname, "build"),
         compress: true,
