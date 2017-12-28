@@ -9,3 +9,16 @@
     background: #eee;
     padding: 11px 10px 5px 9px;
   }
+  .da-row{
+    display: flex;
+    border-top: 1px solid #ddd;
+    &>div{
+        padding: 2px 10px 5px 4px;
+        width: 40%;
+      &+div{
+        width: 60%;
+        background: #eee;
+        padding: 11px 10px 5px 9px;
+      }
+    }
+  }

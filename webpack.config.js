@@ -56,7 +56,7 @@ module.exports = {
             Common: path.resolve(__dirname, 'JSX/Components/Common/')
         },
         // directories where to look for modules
-        extensions: [".js", ".json", ".jsx", ".css"],
+        extensions: [".js", ".json", ".jsx", ".less"],
     },
     plugins: [
         new HtmlWebpackPlugin({
