@@ -1,7 +1,7 @@
 # reactjs
-for react [教程](https://advence-liz.github.io/reactjs/out/index.html)
 
 并且采用每个branch 一个单独的解决方案的方式（master branch 并不是这样的算是历史问题因为那时git 玩的不溜）
+
 ## REF
 - [react-router](https://reacttraining.com/react-router/web/example/basic)
 ## branch list
@@ -19,6 +19,8 @@ for react [教程](https://advence-liz.github.io/reactjs/out/index.html)
 
 
 
-## TODO
--[ ] 做一个命令行工具可以可以自动编译less 压缩 css 压缩 js 运行 webpack 
-
+ ## REF
+- [React 顶层API](http://www.cnblogs.com/vajoy/p/4631292.html)
+- [React CN](https://doc.react-china.org/docs/hello-world.html)
+- [react-router](https://reacttraining.com/react-router/web/example/basic)
+- [React - Basic Theoretical Concepts](https://github.com/reactjs/react-basic/blob/master/README.md)
