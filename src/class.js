@@ -1,0 +1,5 @@
+
+"[{"$type":"AvePoint.Adonis.CentralAdmin.Object.CASiteCollectionAnonymousAccessOperation, CentralAdminContract","siteCollectionUrl":"http://dc3tezv5d1zq0tb/my","treeNodeId":"5a8f3dac-aaf8-411a-8318-874192440557"}]"
+
+"[{"$type":"AvePoint.Adonis.CentralAdmin.Object.CASiteCollectionAnonymousAccessOperation, CentralAdminContract","siteCollectionUrl":"http://dc3tezv5d1zq0tb/my/personal/spadmin","treeNodeId":"dc5e7283-a802-479d-a9f5-0c80706aa79e"}]"
+"[{"$type":"AvePoint.Adonis.CentralAdmin.Object.CASiteCollectionAnonymousAccessOperation, CentralAdminContract","siteCollectionUrl":"http://dc3tezv5d1zq0tb/my/personal/spadmin","treeNodeId":"dc5e7283-a802-479d-a9f5-0c80706aa79e"}]"peration, CentralAdminContract","siteCollectionUrl":"http://dc3tezv5d1zq0tb/my/personal/spadmin","treeNodeId":"dc5e7283-a802-479d-a9f5-0c80706aa79e"}]"
