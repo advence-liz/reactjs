@@ -11,6 +11,7 @@
                 }
             }
         ],
-        "react"
+        "react",
+        "stage-2"
     ]
 }

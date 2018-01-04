@@ -27,6 +27,7 @@
     "babel-loader": "^7.1.2",
     "babel-preset-env": "^1.6.0",
     "babel-preset-react": "^6.24.1",
+    "babel-preset-stage-2": "^6.24.1",
     "eslint": "^3.0.0",
     "eslint-config-docave": "0.0.2",
     "eslint-plugin-jsx-a11y": "^5.1.1",

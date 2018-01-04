@@ -41,8 +41,8 @@ module.exports = {
         // (does not apply to resolving to loaders)
         modules: [
             "node_modules",
-            path.join(__dirname, 'src', 'Component'),
-            "Component"
+            path.join(__dirname, 'src', 'Components')
+          
         ],
         // directories where to look for modules
         extensions: [".js", ".json", ".jsx", ".css"],
