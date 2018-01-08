@@ -27,3 +27,20 @@ export default class GrantPermissions extends React.Component {
         )
     }
 }
+/**
+ * RadioGroup
+ * @prop {String} name
+ * @prop {String} checkedValue
+ * @prop {Function} checkChanged
+ * @prop {String} defaultCheckedValue optional when checkedValue undefined use defaultCheckedValue
+ * @desc 可选字段
+ * @example
+ *    <RadioGroup
+ *         name="AnonymousUserLevel"
+ *         id="AnonymousUserLevel"
+ *         items={this.anonymousUserLevelItems}
+ *         checkedValue={this.state.anonymousUserLevelChecked}
+ *         //defaultCheckedValue={3} optional
+ *         checkChanged={this.singleRadioClick}
+ *     />
+ */
