@@ -29,7 +29,10 @@ function Letter(props) {
         fontSize: "32px", 
         textAlign: "center"
     };
-    return (<div style={letterStyle}> {props.children} </div>)
+    function handleClick (){
+
+    }
+    return (<div style={letterStyle} onClick={handleClick}> {props.children} </div>)
 }
 
 
