@@ -8,3 +8,9 @@ for react [教程](https://advence-liz.github.io/reactjs/out/index.html)
 - 想想 eslint-plugin-compat 这个插件也挺鸡肋的，既然都使用babel了也就不需要检查这些语法了（看着那位老哥的脸感觉明显是个印度人）
 - npm install 还会移除 多余安装包（应该是新版本功能之前没注意也没感觉有这个功能）
 
+"[{"treeNodeId":"abac2403-f7f1-4d71-a29f-0480aaf5f1f6","$type":"AvePoint.Adonis.CentralAdmin.Object.CASiteCollectionAnonymousAccessOperation, CentralAdminContract","siteCollectionUrl":"http://dc3tezv5d1zq0tb/my","state":0,"enable":false,"webID":null}]"
+
+"[{"$type":"AvePoint.Adonis.CentralAdmin.Object.CASiteCollectionAnonymousAccessOperation, CentralAdminContract","siteCollectionUrl":"http://dc3tezv5d1zq0tb/my","state":0,"enable":false,"webID":null,"treeNodeId":"abac2403-f7f1-4d71-a29f-0480aaf5f1f6"}]"
+
+up f down s
+
