@@ -19,3 +19,14 @@ class App extends React.Component {
 
 ReactDOM.render( <Gender defaultChecked="male" />, document.getElementById('root'));
 
+
+class Person{
+  name = "liz";
+  state = {name:'lll'};
+  log=()=>{
+   console.log(this.liz);
+  }
+
+}
+var liz = new Person();
+
