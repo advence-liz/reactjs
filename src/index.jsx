@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM, { render } from 'react-dom';
 
 class Clock extends React.Component {
+  name ="eee";
   constructor(props) {
     super(props);
     this.state = {
