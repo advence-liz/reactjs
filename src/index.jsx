@@ -1,42 +1,38 @@
-import React from 'react';
-import ReactDOM, { render } from 'react-dom';
+import React from "react"
+import ReactDOM, { render } from "react-dom"
 
 class Clock extends React.Component {
-  name ="eee";
+  name = "eee"
   constructor(props) {
-    super(props);
+    super(props)
     this.state = {
       date: new Date(),
       title: this.props.title,
       time: 0
-    };
+    }
   }
 
   componentDidMount() {
-    this.timerID = setInterval(
-      () => this.tick(),
-      1000
-    );
+    this.timerID = setInterval(() => this.tick(), 1000)
   }
 
   componentWillUnmount() {
-    clearInterval(this.timerID);
+    clearInterval(this.timerID)
   }
 
   tick() {
     this.setState({
       date: new Date()
-    });
-    this.setState(function (prevState, props) {
-
+    })
+    this.setState(function(prevState, props) {
       return { title: `${prevState.time++}${props.title}` }
-    });
+    })
   }
   shouldComponentUpdate(nextProps, nextState) {
     if (nextState.time % 2) {
-      return false;
+      return false
     }
-    return true;
+    return true
   }
   render() {
     return (
@@ -44,12 +40,8 @@ class Clock extends React.Component {
         <h1>{this.state.title}</h1>
         <h2>It is {this.state.date.toLocaleTimeString()}.</h2>
       </div>
-    );
+    )
   }
 }
 
-
-ReactDOM.render(
-  <Clock title="Hello" />,
-  document.getElementById('root')
-);
+ReactDOM.render(<Clock title="Hello" />, document.getElementById("root"))

@@ -1,6 +1,7 @@
 {
-     "extends": "docave",
-     "rules": {
-         "no-unused-vars":"off"
-     }
+  "extends": "docave",
+  "parser": "babel-eslint",
+  "rules": {
+    "no-unused-vars": "off"
+  }
 }
