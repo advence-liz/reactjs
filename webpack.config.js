@@ -1,67 +1,58 @@
-var webpack = require('webpack');
-var path = require("path"),
-    HtmlWebpackPlugin = require('html-webpack-plugin');
-
-
-
+const path = require('path')
+const webpack = require('webpack')
+const CleanWebpackPlugin = require('clean-webpack-plugin')
+const HtmlWebpackPlugin = require('html-webpack-plugin')
+const { getConfig } = require('quickly-switch')
+const { currentModule } = getConfig()
 module.exports = {
-    entry: {
-       thinking:'./src/thinking.jsx'
-
-      
-    },
-    output: {
-        path: path.resolve(__dirname, 'build'),
-        filename: "[name].js",
-      
-
-    },
-
-    module: {
-        rules: [
-            
-            {
-                test: /\.(js|jsx)$/,
-                exclude: /(node_modules|bower_components)/,
-                use: [
-                    {
-                        loader: 'babel-loader',
-                        options: {
-                            presets: ['es2015', 'react', 'stage-2']
-
-                        }
-                    }
-
-                ]
-            }
+  entry: path.join(__dirname, 'src', currentModule),
+  mode: 'development',
+  context: __dirname,
+  output: {
+    filename: 'bundle.js',
+    path: path.resolve(__dirname, 'build')
+  },
+  module: {
+    rules: [
+      {
+        test: /\.jsx?$/,
+        exclude: /(node_modules|bower_components)/,
+        use: [
+          {
+            loader: 'babel-loader'
+          }
         ]
-
-    },
-    context: __dirname,
-    //devtool: "source-map",
-    devtool:"cheap-module-eval-source-map",
-    target: "web",
-    resolve: {
-        // options for resolving module requests
-        // (does not apply to resolving to loaders)
-        modules: [
-            "node_modules",
-            path.resolve(__dirname, "node_modules")
-        ],
-        // directories where to look for modules
-        extensions: [".js", ".json", ".jsx", ".css"],
-    },
-    // plugins: [
-    //     new HtmlWebpackPlugin({
-    //         filename: 'index.html',
-    //         template: 'template/_layout.html'
-    //     }),
-    // ],
-    
-    // devServer: {
-    //     contentBase: path.join(__dirname, "dist"),
-    //     compress: true,
-    //     port: 9000
-    // }
-
-};
+      },
+      {
+        test: /\.scss$/,
+        use: [
+          {
+            loader: 'style-loader'
+          },
+          {
+            loader: 'css-loader'
+          },
+          {
+            loader: 'sass-loader'
+          }
+        ]
+      }
+    ]
+  },
+  resolve: {
+    extensions: ['.js', '.jsx', '.scss']
+  },
+  devtool: 'source-map',
+  plugins: [
+    new webpack.NamedModulesPlugin(),
+    new webpack.HotModuleReplacementPlugin(),
+    new CleanWebpackPlugin(['build']),
+    new HtmlWebpackPlugin({
+      filename: 'index.html',
+      template: 'template/_layout.ejs',
+      favicon: 'template/favicon.ico',
+      // inject: false,
+      title: 'React'
+    })
+  ]
+}

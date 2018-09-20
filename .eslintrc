@@ -1,6 +1,0 @@
-{
-     "extends": "docave",
-     "rules": {
-         "no-unused-vars":"off"
-     }
-}
