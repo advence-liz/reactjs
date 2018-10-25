@@ -1,9 +1,11 @@
 const path = require('path')
 const webpack = require('webpack')
+const fs = require('fs-extra')
 const CleanWebpackPlugin = require('clean-webpack-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
+const currentModule = fs.readJsonSync('.qsrc.json').module
 module.exports = {
-  entry: './src/',
+  entry: path.resolve('src', currentModule),
   mode: 'development',
   context: __dirname,
   output: {
@@ -60,13 +62,6 @@ module.exports = {
             loader: 'sass-loader'
           }
         ]
-      },
-      {
-        test: /\.(art|ejs)$/,
-        loader: 'art-template-loader',
-        options: {
-          compileDebug: true
-        }
       }
     ]
   },
@@ -80,10 +75,10 @@ module.exports = {
     new CleanWebpackPlugin(['build']),
     new HtmlWebpackPlugin({
       filename: 'index.html',
-      template: 'template/_layout.ejs',
-      favicon: 'template/favicon.ico',
+      template: '_template/_layout.ejs',
+      favicon: '_template/favicon.ico',
       // inject: false,
-      title: 'webpack'
+      title: currentModule
     }),
     new webpack.DefinePlugin({
       PRODUCTION: true,
