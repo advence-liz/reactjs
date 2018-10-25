@@ -2,10 +2,8 @@ const path = require('path')
 const webpack = require('webpack')
 const CleanWebpackPlugin = require('clean-webpack-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
-const { getConfig } = require('quickly-switch')
-const { currentModule } = getConfig()
 module.exports = {
-  entry: path.join(__dirname, 'src', currentModule),
+  entry: './src/',
   mode: 'development',
   context: __dirname,
   output: {
@@ -24,6 +22,32 @@ module.exports = {
         ]
       },
       {
+        test: /\.tsx?$/,
+        use: [
+          {
+            loader: 'babel-loader'
+          },
+          {
+            loader: 'ts-loader'
+          }
+        ]
+      },
+      {
+        test: /\.(less|css)$/,
+        use: [
+          {
+            loader: 'style-loader' // creates style nodes from JS strings
+          },
+          {
+            loader: 'css-loader', // translates CSS into CommonJS
+            options: { modules: true }
+          },
+          {
+            loader: 'less-loader' // compiles Less to CSS
+          }
+        ]
+      },
+      {
         test: /\.scss$/,
         use: [
           {
@@ -36,11 +60,18 @@ module.exports = {
             loader: 'sass-loader'
           }
         ]
+      },
+      {
+        test: /\.(art|ejs)$/,
+        loader: 'art-template-loader',
+        options: {
+          compileDebug: true
+        }
       }
     ]
   },
   resolve: {
-    extensions: ['.js', '.jsx', '.scss']
+    extensions: ['.js', '.jsx', '.less', '.scss']
   },
   devtool: 'source-map',
   plugins: [
@@ -52,7 +83,15 @@ module.exports = {
       template: 'template/_layout.ejs',
       favicon: 'template/favicon.ico',
       // inject: false,
-      title: 'React'
+      title: 'webpack'
+    }),
+    new webpack.DefinePlugin({
+      PRODUCTION: true,
+      VERSION: JSON.stringify('5fa3b9'),
+      BROWSER_SUPPORTS_HTML5: true,
+      TWO: '1+1',
+      'typeof window': JSON.stringify('object'),
+      'process.env.NODE_ENV': JSON.stringify('production')
     })
   ]
 }
